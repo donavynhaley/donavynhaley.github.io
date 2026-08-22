@@ -28,7 +28,7 @@ body{margin:0;background:var(--background);color:var(--text-c);font-size:13.5px;
 /* ---- nav ---- */
 nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);
   background:color-mix(in srgb,var(--background) 92%,transparent);border-bottom:1px solid var(--border)}
-nav .inner{min-height:54px;display:flex;align-items:center;gap:22px}
+nav .inner{min-height:54px;display:flex;align-items:center;gap:22px;position:relative}
 .brand{display:flex;align-items:center;gap:10px;margin-right:auto}
 .brand-mark{display:grid;width:26px;height:26px;place-items:center;color:var(--background);
   background:var(--accent);border-radius:6px;font-size:12px;font-weight:800}
@@ -37,11 +37,28 @@ nav a{color:var(--muted);text-decoration:none;font-size:11.5px;display:inline-fl
   transition:color 120ms ease}
 nav a:hover{color:var(--text-c)}
 nav a i{width:6px;height:6px;border-radius:999px;background:var(--nd,var(--faint))}
+.links-row{display:contents}
+.menu-btn{display:none;margin-left:auto;width:34px;height:30px;place-items:center;
+  background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--muted);
+  cursor:pointer;font:inherit;font-size:13px;line-height:1;padding:0}
+.menu-btn:hover{color:var(--text-c);border-color:var(--border-bright)}
+.menu-panel{display:none;position:absolute;top:100%;left:0;right:0;
+  background:var(--surface-raised);border-bottom:1px solid var(--border);
+  box-shadow:0 14px 34px rgb(0 0 0 / 40%);padding:8px 20px 14px}
+.menu-panel a{display:flex;align-items:center;gap:10px;padding:11px 4px;font-size:13px;
+  color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border)}
+.menu-panel a:last-child{border-bottom:0}
+.menu-panel a i{width:7px;height:7px;border-radius:999px;background:var(--nd,var(--faint));flex:none}
 @media(max-width:760px){
-  .brand-word{display:none}
-  nav .inner{gap:14px}
-  nav a{font-size:11px}
+  nav .links-row{display:none}
+  .brand{margin-right:0}
+  .menu-btn{display:grid}
+  nav.open .menu-panel{display:block}
 }
+@media (prefers-reduced-motion: no-preference){
+  nav.open .menu-panel{animation:menu-in 150ms ease}
+}
+@keyframes menu-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 
 /* ---- hero: who + the board ---- */
 .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
@@ -211,10 +228,19 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
 
 <nav><div class="inner">
   <span class="brand"><span class="brand-mark">D</span><span class="brand-word">donavyn haley</span></span>
-  <a href="#fitreps" style="--nd:var(--accent)"><i></i>fitreps</a>
-  <a href="#monkey-code" style="--nd:var(--blue)"><i></i>monkey code</a>
-  <a href="#grimoire" class="hide-sm" style="--nd:var(--purple)"><i></i>grimoire</a>
-  <a href="#rune-camp" class="hide-sm" style="--nd:var(--terra)"><i></i>rune.camp</a>
+  <span class="links-row">
+    <a href="#fitreps" style="--nd:var(--accent)"><i></i>fitreps</a>
+    <a href="#monkey-code" style="--nd:var(--blue)"><i></i>monkey code</a>
+    <a href="#grimoire" style="--nd:var(--purple)"><i></i>grimoire</a>
+    <a href="#rune-camp" style="--nd:var(--terra)"><i></i>rune.camp</a>
+  </span>
+  <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false">☰</button>
+  <div class="menu-panel">
+    <a href="#fitreps" style="--nd:var(--accent)"><i></i>fitreps</a>
+    <a href="#monkey-code" style="--nd:var(--blue)"><i></i>monkey code</a>
+    <a href="#grimoire" style="--nd:var(--purple)"><i></i>grimoire</a>
+    <a href="#rune-camp" style="--nd:var(--terra)"><i></i>rune.camp</a>
+  </div>
 </div></nav>
 
 <header class="hero"><div class="inner">
@@ -634,6 +660,17 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
     if (box.classList.contains("open") && (e.target === box || e.target.closest(".close"))) close();
   });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+  const nav = document.querySelector("nav");
+  const menuBtn = nav.querySelector(".menu-btn");
+  const closeMenu = () => { nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); };
+  menuBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const open = nav.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", String(open));
+  });
+  nav.querySelectorAll(".menu-panel a").forEach((a) => a.addEventListener("click", closeMenu));
+  document.addEventListener("click", (e) => { if (nav.classList.contains("open") && !e.target.closest("nav")) closeMenu(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
   document.querySelectorAll("[data-live]").forEach((el) => {
     const label = el.dataset.liveLabel;
     const done = (up) => {
