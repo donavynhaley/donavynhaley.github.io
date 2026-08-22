@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Donavyn Haley — Selected Work</title>
+<meta name="description" content="Software engineer in Portland. Selected work: FITREPS, Monkey Code, Grimoire, rune.camp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  --background:#101214; --surface:#15181b; --surface-raised:#1a1e22; --surface-soft:#20252a;
+  --border:#2b3136; --border-bright:#3a4248;
+  --text-c:#d8d9d1; --muted:#92999c; --faint:#7c8387;
+  --accent:#b8d99b; --accent-soft:#233021;
+  --blue:#8bb9c9; --purple:#b49bd4; --terra:#d89b73; --amber:#d6bc78; --red:#d87578;
+  --mono:"JetBrains Mono","Roboto Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scrollbar-gutter:stable}
+body{margin:0;background:var(--background);color:var(--text-c);font-size:13.5px;line-height:1.72;
+  font-family:var(--mono);-webkit-font-smoothing:antialiased}
+::selection{color:var(--background);background:var(--accent)}
+.inner{max-width:1320px;margin:0 auto;padding:0 24px}
+
+/* ---- nav ---- */
+nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);
+  background:color-mix(in srgb,var(--background) 92%,transparent);border-bottom:1px solid var(--border)}
+nav .inner{min-height:54px;display:flex;align-items:center;gap:22px}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto}
+.brand-mark{display:grid;width:26px;height:26px;place-items:center;color:var(--background);
+  background:var(--accent);border-radius:6px;font-size:12px;font-weight:800}
+.brand-word{font-size:12px;font-weight:800;letter-spacing:.04em}
+nav a{color:var(--muted);text-decoration:none;font-size:11.5px;display:inline-flex;align-items:center;gap:7px;
+  transition:color 120ms ease}
+nav a:hover{color:var(--text-c)}
+nav a i{width:6px;height:6px;border-radius:999px;background:var(--nd,var(--faint))}
+@media(max-width:760px){nav .hide-sm{display:none}}
+
+/* ---- hero: who + the board ---- */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero::before{content:"";position:absolute;inset:-30% 40% auto -10%;height:420px;
+  background:radial-gradient(closest-side,color-mix(in srgb,var(--accent) 7%,transparent),transparent);
+  pointer-events:none}
+.hero .inner{display:grid;grid-template-columns:minmax(320px,5fr) minmax(0,6fr);gap:56px;
+  align-items:center;padding-top:58px;padding-bottom:64px}
+.hero h1{font-size:clamp(28px,4.4vw,44px);line-height:1.08;letter-spacing:-.02em;margin:0 0 18px;font-weight:800}
+.hero .sub{font-size:13.5px;color:var(--muted);margin:0 0 18px;line-height:1.72}
+.hero .sub b{color:var(--text-c);font-weight:700}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.links a{font-size:12px;color:var(--text-c);text-decoration:none;background:var(--surface);
+  border:1px solid var(--border);padding:7px 14px;border-radius:6px;
+  transition:border-color 120ms ease,background 120ms ease,transform 120ms ease}
+.links a:hover{background:var(--surface-soft);border-color:var(--border-bright);transform:translateY(-1px)}
+.hero .note{color:var(--faint);font-size:11.5px;margin:22px 0 0;max-width:52ch}
+
+.board{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bcard{position:relative;overflow:hidden;display:grid;align-content:start;gap:8px;
+  padding:16px 18px 15px;background:var(--surface-raised);border:1px solid var(--border);border-radius:7px;
+  color:var(--text-c);text-decoration:none;
+  transition:border-color 120ms ease,transform 120ms ease}
+.bcard::before{content:"";position:absolute;top:0;bottom:0;left:0;width:3px;background:var(--cat)}
+.bcard:hover{border-color:var(--border-bright);transform:translateY(-2px)}
+.bcard b{font-size:13px;font-weight:800}
+.bcard p{margin:0;font-size:11px;color:var(--muted);line-height:1.6}
+.bcard .sig{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+@media(max-width:960px){.hero .inner{grid-template-columns:1fr;gap:36px}}
+@media(max-width:560px){.board{grid-template-columns:1fr}}
+
+/* ---- sections: sticky rail + content ---- */
+section{border-top:1px solid var(--border);scroll-margin-top:62px;position:relative}
+section::before{content:"";position:absolute;inset:0 0 auto 0;height:220px;pointer-events:none;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--cat) 4%,transparent),transparent)}
+#fitreps{--cat:var(--accent)} #monkey-code{--cat:var(--blue)}
+#grimoire{--cat:var(--purple)} #rune-camp{--cat:var(--terra)}
+section .inner{display:grid;grid-template-columns:296px minmax(0,1fr);gap:52px;
+  padding-top:56px;padding-bottom:64px}
+.rail{position:sticky;top:78px;align-self:start;display:grid;gap:14px;align-content:start}
+.content{display:grid;gap:30px;align-content:start;min-width:0}
+.content > *{margin:0}
+@media(max-width:960px){
+  section .inner{grid-template-columns:1fr;gap:34px}
+  .rail{position:static}
+}
+
+.chead{display:flex;align-items:center;gap:12px}
+.dot{width:9px;height:9px;flex:none;border-radius:999px;background:var(--cat)}
+.dot.off{background:transparent;border:1.5px solid var(--faint)}
+h2{font-size:clamp(22px,3vw,28px);margin:0;letter-spacing:-.01em;font-weight:800;line-height:1.15}
+.count{display:inline-flex;min-height:20px;padding:0 9px;align-items:center;color:var(--muted);
+  background:var(--surface-soft);border-radius:999px;font-size:9.5px;white-space:nowrap;margin-top:4px}
+.tagline{font-size:13px;color:var(--muted);margin:0;line-height:1.65}
+.railnote{font-size:11px;color:var(--faint);margin:0;line-height:1.65}
+
+/* ---- pills ---- */
+.meta{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;min-height:19px;padding:1px 8px;align-items:center;border-radius:999px;
+  font-size:9.5px;font-weight:700;color:var(--faint);border:1px solid var(--border)}
+.chip.live{color:var(--cat);background:color-mix(in srgb,var(--cat) 11%,transparent);
+  border-color:color-mix(in srgb,var(--cat) 28%,transparent)}
+.chip.live::before{content:"";width:5px;height:5px;margin-right:6px;border-radius:999px;background:var(--cat)}
+a.chip{text-decoration:none;transition:border-color 120ms ease,color 120ms ease}
+a.chip:hover{border-color:var(--cat);color:var(--cat)}
+
+h3{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);
+  margin:0;font-weight:800}
+p{margin:0}
+.content p + p{margin-top:12px}
+
+/* ---- rail stats ---- */
+.stats{display:grid;grid-template-columns:1fr 1fr;background:var(--surface);
+  border:1px solid var(--border);border-radius:7px;overflow:hidden}
+.stat{padding:11px 14px 9px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stat:nth-child(2n){border-right:0}
+.stat:nth-last-child(-n+2):nth-child(2n+1),.stat:last-child{border-bottom:0}
+.stat b{display:block;font-size:17px;font-weight:800;letter-spacing:-.02em;line-height:1.15}
+.stat span{display:block;font-size:8px;color:var(--faint);margin-top:3px;letter-spacing:.12em;font-weight:700}
+
+/* ---- card grids (former bullet walls) ---- */
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{position:relative;overflow:hidden;padding:14px 17px 13px;background:var(--surface-raised);
+  border:1px solid var(--border);border-radius:7px;
+  transition:border-color 120ms ease,transform 120ms ease}
+.card::before{content:"";position:absolute;top:0;bottom:0;left:0;width:3px;background:var(--cat)}
+.card:hover{border-color:var(--border-bright);transform:translateY(-1px)}
+.card b{display:block;font-size:12px;font-weight:800;margin-bottom:5px}
+.card p{font-size:11.5px;color:var(--muted);line-height:1.62}
+@media(max-width:700px){.cards{grid-template-columns:1fr}}
+
+/* ---- duo: prose beside media ---- */
+.duo{display:grid;grid-template-columns:minmax(260px,4fr) minmax(0,7fr);gap:28px;align-items:start}
+.duo.flip{grid-template-columns:minmax(0,7fr) minmax(260px,4fr)}
+.duo .txt{display:grid;gap:12px;align-content:start}
+@media(max-width:860px){.duo,.duo.flip{grid-template-columns:1fr}}
+
+/* ---- callout ---- */
+.callout{position:relative;overflow:hidden;padding:20px 24px;background:var(--surface-raised);
+  border:1px solid var(--border);border-radius:7px}
+.callout::before{content:"";position:absolute;top:0;bottom:0;left:0;width:3px;background:var(--cat)}
+.callout .label{font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;font-weight:800;
+  color:var(--cat);display:block;margin-bottom:9px}
+.callout p{font-size:12.5px}
+.callout p + p{margin-top:10px}
+.callout strong{font-weight:700}
+
+/* ---- media ---- */
+figure{margin:0;min-width:0}
+.shot{border:1px solid var(--border);border-radius:7px;overflow:hidden;background:var(--surface-raised);
+  box-shadow:0 14px 34px rgb(0 0 0 / 40%);transition:border-color 120ms ease,transform 120ms ease}
+.shot:hover{border-color:var(--border-bright);transform:translateY(-1px)}
+.shot img,.shot video{display:block;width:100%;height:auto}
+.shot .ph{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;
+  color:var(--faint);font-size:11px;text-align:center;padding:24px;
+  background:repeating-linear-gradient(45deg,transparent,transparent 10px,var(--border) 10px,var(--border) 11px)}
+.shot:has(img) .ph,.shot:has(video) .ph{display:none}
+figcaption{font-size:10.5px;color:var(--faint);margin-top:8px}
+.pair{display:grid;grid-template-columns:1.9fr 1fr;gap:16px;align-items:start}
+@media(max-width:860px){.pair{grid-template-columns:1fr}}
+
+footer{padding:56px 0 88px;border-top:1px solid var(--border);color:var(--faint);font-size:11.5px}
+footer a{color:var(--muted);text-decoration:none;transition:color 120ms ease}
+footer a:hover{color:var(--accent)}
+a.inline{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
+code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1px 5px;border-radius:4px}
+
+/* ---- lightbox ---- */
+.shot:has(img),.shot:has(video){cursor:zoom-in}
+.lightbox{position:fixed;inset:0;z-index:100;display:none;flex-direction:column;align-items:center;
+  justify-content:center;gap:14px;padding:28px;background:rgb(6 7 8 / 94%);backdrop-filter:blur(6px)}
+.lightbox.open{display:flex}
+.lightbox img{max-width:96vw;max-height:88vh;width:auto;height:auto;border-radius:7px;
+  border:1px solid var(--border-bright);box-shadow:0 24px 70px rgb(0 0 0 / 60%)}
+.lightbox .cap{font-size:11.5px;color:var(--muted);max-width:80ch;text-align:center}
+.lightbox .close{position:absolute;top:16px;right:20px;color:var(--faint);background:var(--surface-raised);
+  border:1px solid var(--border);border-radius:6px;padding:6px 12px;font:inherit;font-size:11px;cursor:pointer;
+  transition:color 120ms ease,border-color 120ms ease}
+.lightbox .close:hover{color:var(--text-c);border-color:var(--border-bright)}
+@media (prefers-reduced-motion: no-preference){
+  .lightbox.open{animation:lb-in 160ms ease}
+}
+@keyframes lb-in{from{opacity:0}to{opacity:1}}
+
+/* ---- motion: only where it helps the reader ---- */
+@media (prefers-reduced-motion: no-preference){
+  .dot.pulse{animation:live-pulse 2.8s ease-out infinite}
+  @supports (animation-timeline: view()){
+    .shot,.callout,.card{animation:rise ease both;animation-timeline:view();
+      animation-range:entry 0% entry 55%}
+  }
+}
+@keyframes live-pulse{
+  0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--cat) 45%,transparent)}
+  65%,100%{box-shadow:0 0 0 9px transparent}
+}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav><div class="inner">
+  <span class="brand"><span class="brand-mark">D</span><span class="brand-word">donavyn haley</span></span>
+  <a href="#fitreps" style="--nd:var(--accent)"><i></i>fitreps</a>
+  <a href="#monkey-code" style="--nd:var(--blue)"><i></i>monkey code</a>
+  <a href="#grimoire" class="hide-sm" style="--nd:var(--purple)"><i></i>grimoire</a>
+  <a href="#rune-camp" class="hide-sm" style="--nd:var(--terra)"><i></i>rune.camp</a>
+</div></nav>
+
+<header class="hero"><div class="inner">
+  <div>
+    <h1>donavyn haley</h1>
+    <p class="sub">Software engineer in Portland. Co-founder and CTO of <b>FITREPS</b>, where I've
+      spent three years building a creator platform on AWS. Currently at Capital One through
+      TEKsystems.</p>
+    <p class="sub">I tend to build the whole thing: the services, the infrastructure they run on,
+      the tests that gate them, and whatever tooling was missing.</p>
+    <div class="links">
+      <a href="https://github.com/donavynhaley">GitHub</a>
+      <a href="https://www.linkedin.com/in/donavynhaley/">LinkedIn</a>
+      <a href="mailto:donavynhaley@gmail.com">Email</a>
+    </div>
+    <p class="note">Most of this is closed source, so what follows is write-ups of the decisions
+      rather than links to repos, with the artifacts I can show.</p>
+  </div>
+  <div class="board">
+    <a class="bcard" href="#fitreps" style="--cat:var(--accent)">
+      <b>FITREPS</b>
+      <p>Creator monetization for fitness on AWS serverless. Three years as co-founder and CTO.</p>
+      <span class="sig"><span class="chip live">live</span><span class="chip">34 services · 499 specs</span></span>
+    </a>
+    <a class="bcard" href="#monkey-code" style="--cat:var(--blue)">
+      <b>monkey code</b>
+      <p>A multi-agent coding system: deterministic pipeline, desktop cockpit.</p>
+      <span class="sig"><span class="chip live">active</span><span class="chip">8 roles · 2 providers</span></span>
+    </a>
+    <a class="bcard" href="#grimoire" style="--cat:var(--purple)">
+      <b>grimoire</b>
+      <p>A work board that's really a visual layer over Markdown. Agent-safe by design.</p>
+      <span class="sig"><span class="chip live">live</span><span class="chip">v0.2.0 on npm</span></span>
+    </a>
+    <a class="bcard" href="#rune-camp" style="--cat:var(--terra)">
+      <b>rune.camp</b>
+      <p>A gamified drawing curriculum laid out on a procedurally illustrated 3D world map.</p>
+      <span class="sig"><span class="chip">offline for now</span><span class="chip">guided studio</span></span>
+    </a>
+  </div>
+</div></header>
+
+<!-- ═════════ 01 FITREPS ═════════ -->
+<section id="fitreps"><div class="inner">
+  <aside class="rail">
+    <div class="chead"><span class="dot pulse"></span><h2>FITREPS</h2><span class="count">since 2023</span></div>
+    <p class="tagline">A creator monetization platform for fitness, running on AWS serverless.
+      Co-founder and CTO.</p>
+    <div class="meta">
+      <a class="chip live" href="https://fitreps.com">live · fitreps.com</a>
+      <span class="chip">TypeScript</span><span class="chip">AWS Lambda</span><span class="chip">Aurora</span>
+      <span class="chip">Next.js</span><span class="chip">Stripe</span><span class="chip">CDK</span>
+      <span class="chip">Playwright</span>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>34</b><span>LAMBDA SERVICES</span></div>
+      <div class="stat"><b>268</b><span>API ROUTES</span></div>
+      <div class="stat"><b>97</b><span>AURORA TABLES</span></div>
+      <div class="stat"><b>2,600+</b><span>COMMITS OF MINE</span></div>
+      <div class="stat"><b>499</b><span>E2E SPECS</span></div>
+      <div class="stat"><b>1,700</b><span>TAGGED ASSERTIONS</span></div>
+    </div>
+    <p class="railnote">I lead the backend, infrastructure, shared core package, and test platform.</p>
+  </aside>
+  <div class="content">
+
+    <figure data-media="fr-creator-dashboard">
+      <div class="shot"><img src="img/fr-creator-dashboard.webp" alt="fr creator dashboard" loading="lazy" onerror="this.remove()"><div class="ph">img/fr-creator-dashboard</div></div>
+      <figcaption>Creator dashboard.</figcaption>
+    </figure>
+
+    <div class="cards">
+      <div class="card"><b>One package, no drift</b>
+        <p>Route definitions, Zod schemas, entities and repositories live in one package that the
+        backend, the web app and the CDK infrastructure all read from. An endpoint gets defined once
+        and the types follow it everywhere. That's what kept 34 services from drifting apart.</p></div>
+      <div class="card"><b>Local dev is the production shape</b>
+        <p>An Express shim wraps the exact Lambda handlers and route definitions that ship to AWS,
+        with Docker Postgres standing in for Aurora and MinIO for S3. There is no separate local
+        implementation to drift out of sync.</p></div>
+      <div class="card"><b>The revenue surface, end to end</b>
+        <p>Stripe subscriptions and creator payouts, the webhooks that reconcile them, and a
+        FitCredits ledger for everything a subscription doesn't cover.</p></div>
+      <div class="card"><b>Around the edges</b>
+        <p>The admin app behind the closed alpha, the subscription-funnel analytics, comment
+        moderation with ban write-enforcement, and a nightly sweep that marks missed days across
+        every in-progress training program.</p></div>
+    </div>
+
+    <div class="callout">
+      <span class="label">Worth calling out</span>
+      <p>Our performance harness was reporting simulated Lighthouse numbers as if they were
+      measurements. We'd been making decisions on them for months. The trace data was sitting in every
+      report and getting overwritten on the next run, and once I pulled it back out, the change we had
+      written off as a regression was a <strong>27% improvement in Largest Contentful Paint</strong>.
+      The page had been faster the whole time. What doubled was the model's multiplier.</p>
+      <p>The same pass turned up two live security problems nobody was looking for: bearer tokens
+      getting written to logs on every request, and AWS credentials serialized into a header no service
+      ever read.</p>
+    </div>
+
+    <div class="duo">
+      <div class="txt">
+        <h3>The test platform</h3>
+        <p>499 Playwright specs with 1,700 individually tagged assertions, and a documented rule for
+        which of three tiers each one belongs in. A suite that size stops being useful the moment
+        nobody can say which tests are supposed to block a merge.</p>
+        <p>I also moved the pull-request gate onto self-hosted runners to cut spend without slowing
+        the loop down.</p>
+      </div>
+      <figure data-media="fr-playwright">
+        <div class="shot"><img src="img/fr-playwright.webp" alt="fr playwright" loading="lazy" onerror="this.remove()"><div class="ph">img/fr-playwright</div></div>
+        <figcaption>A smoke pass of the suite, run locally against the dockerised stack.</figcaption>
+      </figure>
+    </div>
+
+    <figure data-media="fr-training-builder">
+      <div class="shot"><img src="img/fr-training-builder.webp" alt="fr training builder" loading="lazy" onerror="this.remove()"><div class="ph">img/fr-training-builder</div></div>
+      <figcaption>Training program builder — multi-step product engineering over a complex domain.</figcaption>
+    </figure>
+
+  </div>
+</div></section>
+
+<!-- ═════════ 02 MONKEY CODE ═════════ -->
+<section id="monkey-code"><div class="inner">
+  <aside class="rail">
+    <div class="chead"><span class="dot"></span><h2>monkey code</h2><span class="count">active</span></div>
+    <p class="tagline">A multi-agent coding system with a deterministic pipeline and a desktop cockpit.</p>
+    <div class="meta">
+      <span class="chip">TypeScript</span><span class="chip">Node.js</span>
+      <span class="chip">Chrome DevTools Protocol</span><span class="chip">React</span>
+    </div>
+    <p class="railnote">Agents are fine at a bounded task. They're bad at deciding what to do next.
+      So the plan / code / review / merge loop is a state machine that lives in harness code, and an
+      agent only gets asked for judgment inside a stage. It never picks the next one.</p>
+  </aside>
+  <div class="content">
+
+    <figure data-media="mc-runs">
+      <div class="shot"><img src="img/mc-runs.webp" alt="mc runs" loading="lazy" onerror="this.remove()"><div class="ph">img/mc-runs</div></div>
+      <figcaption>Starting a run: coding, PR review, or fix findings.</figcaption>
+    </figure>
+
+    <div>
+      <h3 style="margin-bottom:14px">The pipeline</h3>
+      <div class="cards">
+        <div class="card"><b>Linked-intent planning</b>
+          <p>A plan breaks into tasks that stay linked to the requirement that produced them, so a
+          coder working one slice can see why it exists.</p></div>
+        <div class="card"><b>Parallel coders, isolated worktrees</b>
+          <p>Every coder gets its own git worktree, so several can work the same repo at once without
+          stepping on each other.</p></div>
+        <div class="card"><b>Specs on disk, not in context</b>
+          <p>Requirements are EARS statements with semantic IDs. The spec tree carries the design
+          across a run, not any one agent's context window.</p></div>
+        <div class="card"><b>The reviewer looks at the app, not the diff</b>
+          <p>It boots the application and drives Chrome over the DevTools Protocol, capturing the
+          same routes at three breakpoints every round.</p></div>
+        <div class="card"><b>A critic before, a reviewer after</b>
+          <p>A planning critic reviews the plan before anyone writes code. An integration reviewer
+          checks the merged result, because per-task reviewers structurally cannot see the seams
+          between tasks.</p></div>
+        <div class="card"><b>TDD mode</b>
+          <p>Writes the failing test first and treats going green as the gate.</p></div>
+      </div>
+    </div>
+
+    <figure data-media="mc-pipeline">
+      <div class="shot"><img src="img/mc-pipeline.webp" alt="mc pipeline" loading="lazy" onerror="this.remove()"><div class="ph">img/mc-pipeline</div></div>
+      <figcaption>A cross-lab PR review: six gates, every reviewer timed and costed — $25.94 and 35.9M tokens, accounted for.</figcaption>
+    </figure>
+
+    <div>
+      <h3 style="margin-bottom:14px">Running it</h3>
+      <div class="cards">
+        <div class="card"><b>One engine, two frontends</b>
+          <p>A CLI and a desktop cockpit share a backend, so a run started in the terminal is still
+          watchable in the UI.</p></div>
+        <div class="card"><b>Provider-neutral routing</b>
+          <p>Two vendor CLIs behind one interface, failing over on typed session, quota and
+          rate-limit errors instead of string-matching an exit code.</p></div>
+        <div class="card"><b>Deny-by-default sandboxing</b>
+          <p>Delegated to the providers' own hardened sandboxes. I didn't want harness code
+          pretending to be a security boundary.</p></div>
+        <div class="card"><b>Replay</b>
+          <p>Every stage hand-off is written to disk as JSON, so a run can be replayed and a resumed
+          run starts from the longest unchanged prefix instead of the beginning.</p></div>
+        <div class="card"><b>Eight role cards</b>
+          <p>Planner, developer, reviewer, tester, curator, finalizer, pr-reviewer, improver — each a
+          prompt contract rather than hardcoded behavior.</p></div>
+        <div class="card"><b>The loop closes on itself</b>
+          <p>Friction from every run — bounced reviews, failed gates, retried tool calls — feeds an
+          improver that proposes changes to the harness and to its own role prompts.</p></div>
+      </div>
+    </div>
+
+    <div class="pair">
+      <figure data-media="mc-roles">
+        <div class="shot"><img src="img/mc-roles.webp" alt="mc roles" loading="lazy" onerror="this.remove()"><div class="ph">img/mc-roles</div></div>
+        <figcaption>Role cards.</figcaption>
+      </figure>
+      <figure data-media="mc-usage">
+        <div class="shot"><img src="img/mc-usage.webp" alt="mc usage" loading="lazy" onerror="this.remove()"><div class="ph">img/mc-usage</div></div>
+        <figcaption>Two providers, one meter.</figcaption>
+      </figure>
+    </div>
+
+    <div class="duo">
+      <div class="txt">
+        <h3>One loop, not three tools</h3>
+        <p>Its knowledge lives in a vault that renders as a navigable 3D graph, and work comes in
+        from Grimoire, further down this page. A <strong>daily brief</strong> reads what's happening
+        across the ecosystem and marks each item adopt, watch or ignore against the principles the
+        project already committed to.</p>
+        <p>I wanted something that told me how it failed, not just what it produced.</p>
+      </div>
+      <figure data-media="mc-vault-graph">
+        <div class="shot"><video src="img/mc-vault-graph.mp4" autoplay muted loop playsinline></video><div class="ph">img/mc-vault-graph</div></div>
+        <figcaption>The vault as a 3D graph — 133 notes, 633 links, orbitable.</figcaption>
+      </figure>
+    </div>
+
+    <div class="callout">
+      <span class="label">What was actually hard</span>
+      <p>Not prompting. It was context-window economics, meaning what goes in, when to summarize, and
+      what survives across sessions. Tool-call reliability and all the ways a call fails partway
+      through. And getting a nondeterministic worker to behave the same way twice inside a pipeline
+      that has to be repeatable. None of those are new problems. They just show up somewhere people
+      don't expect to find them.</p>
+    </div>
+
+  </div>
+</div></section>
+
+<!-- ═════════ 03 GRIMOIRE ═════════ -->
+<section id="grimoire"><div class="inner">
+  <aside class="rail">
+    <div class="chead"><span class="dot pulse"></span><h2>grimoire</h2><span class="count">v0.2.0 on npm</span></div>
+    <p class="tagline">A collaborative work board that is really a visual editing layer over
+      Markdown files.</p>
+    <div class="meta">
+      <a class="chip live" href="https://grimoire.dryft.gg">live · grimoire.dryft.gg</a>
+      <a class="chip live" href="https://www.npmjs.com/package/grimoire-mcp">grimoire-mcp on npm</a>
+      <span class="chip">React</span><span class="chip">SQLite</span><span class="chip">Docker</span>
+    </div>
+    <p class="railnote">The design system on this page is Grimoire's — same palette, same pills,
+      same cards. You're already looking at it.</p>
+  </aside>
+  <div class="content">
+
+    <div class="duo flip">
+      <figure data-media="gr-board">
+        <div class="shot"><video src="img/gr-board.mp4" autoplay muted loop playsinline></video><div class="ph">img/gr-board</div></div>
+        <figcaption>The board — dragging work into in progress.</figcaption>
+      </figure>
+      <div class="txt">
+        <h3>Markdown first</h3>
+        <p>Work is a page, pages group into chapters, and all of it is portable Markdown on disk.
+        The project stays readable, greppable and version-controlled with the app switched off,
+        which is most of why I built it this way.</p>
+        <p>Ideas sit in a separate garden until someone commits to one, so a maybe doesn't quietly
+        turn into committed work.</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card"><b>Chapters end honestly</b>
+        <p>Closing one asks what should happen to whatever it didn't finish: roll it into the next
+        chapter, send it somewhere named, set it loose, or leave it where it is.</p></div>
+      <div class="card"><b>Estimates are history, not forecast</b>
+        <p>They get added up from what happened — never predicted.</p></div>
+      <div class="card"><b>The board earns attention</b>
+        <p>Only what deserves focus now is visible. Everything accepted but not active lives in a
+        searchable backlog instead of taking up a permanent column.</p></div>
+      <div class="card"><b>Nothing vanishes quietly</b>
+        <p>Archiving is undoable, and once the undo window closes, search is the only way back in.
+        An away digest covers what moved while you were gone.</p></div>
+    </div>
+
+    <div class="callout">
+      <span class="label">The permission model</span>
+      <p>Grimoire ships an MCP server so an agent can read and write a project over its HTTP API, and
+      the permissions are deliberately asymmetric. <strong>An agent adds and refines. Only a person
+      destroys or restructures.</strong> Archiving, promoting an idea, and managing chapters, categories,
+      fields or membership stay closed to an agent no matter what its token scope says, and every agent
+      write lands in an audit log. Working out what an agent should be able to write was easy. Working
+      out what it should never be able to undo took a lot longer.</p>
+    </div>
+
+    <div class="pair">
+      <figure data-media="gr-agent-access">
+        <div class="shot"><img src="img/gr-agent-access.webp" alt="gr agent access" loading="lazy" onerror="this.remove()"><div class="ph">img/gr-agent-access</div></div>
+        <figcaption>Agent tokens, and what a token can never do.</figcaption>
+      </figure>
+      <figure data-media="gr-chapter-close">
+        <div class="shot"><img src="img/gr-chapter-close.webp" alt="gr chapter close" loading="lazy" onerror="this.remove()"><div class="ph">img/gr-chapter-close</div></div>
+        <figcaption>Closing a chapter.</figcaption>
+      </figure>
+    </div>
+
+    <figure data-media="gr-digest">
+      <div class="shot"><img src="img/gr-digest.webp" alt="gr digest" loading="lazy" onerror="this.remove()"><div class="ph">img/gr-digest</div></div>
+      <figcaption>Back after a day away: the digest, every write attributed — including the agent's.</figcaption>
+    </figure>
+
+    <div class="duo">
+      <div class="txt">
+        <h3>Shipping it</h3>
+        <p>It deploys to a Proxmox guest behind a Cloudflare Tunnel, with a self-hosted GitHub
+        Actions runner shipping verified pushes to <code>main</code>. The MCP package is public:
+        <a class="inline" href="https://www.npmjs.com/package/grimoire-mcp">grimoire-mcp</a>.</p>
+      </div>
+      <figure data-media="gr-markdown-proof">
+        <div class="shot"><img src="img/gr-markdown-proof.webp" alt="gr markdown proof" loading="lazy" onerror="this.remove()"><div class="ph">img/gr-markdown-proof</div></div>
+        <figcaption>The same project as the board draws it, and as it sits on disk.</figcaption>
+      </figure>
+    </div>
+
+  </div>
+</div></section>
+
+<!-- ═════════ 04 RUNE CAMP ═════════ -->
+<section id="rune-camp"><div class="inner">
+  <aside class="rail">
+    <div class="chead"><span class="dot off"></span><h2>rune.camp</h2><span class="count">offline for now</span></div>
+    <p class="tagline">A gamified drawing curriculum. Boot.dev, but for learning to draw.</p>
+    <div class="meta">
+      <span class="chip">Next.js</span><span class="chip">Prisma</span><span class="chip">Auth.js</span>
+      <span class="chip">WebGL brushes</span><span class="chip">S3</span>
+    </div>
+    <p class="railnote">Taken offline while its Proxmox host got repurposed for CI runners. The code
+      is intact.</p>
+  </aside>
+  <div class="content">
+
+    <figure data-media="rc-map">
+      <div class="shot"><video src="img/rc-map.mp4" autoplay muted loop playsinline></video><div class="ph">img/rc-map</div></div>
+      <figcaption>The Ascent, traveled: from today's ritual at the base, up past the conquered camps, into the mist.</figcaption>
+    </figure>
+
+    <div class="duo">
+      <div class="txt">
+        <h3>Clear it region by region</h3>
+        <p>The whole drawing journey laid out as a fantasy world map. Each region grants a power and
+        takes three tiers to finish: <em>Scout</em> to learn the concept, <em>Grind</em> to do the
+        reps, <em>Boss fight</em> for one finished piece that proves it.</p>
+        <p>Five class paths — from Draw Anything through Character Artist to Manga &amp; Anime — run
+        different routes up the same mountain, so you're not looking at twenty regions with no idea
+        where to start. Regions
+        gate on their prerequisites, and XP, levels and a daily warm-up streak carry the momentum
+        between them.</p>
+      </div>
+      <figure data-media="rc-lesson">
+        <div class="shot"><img src="img/rc-lesson.webp" alt="rc lesson" loading="lazy" onerror="this.remove()"><div class="ph">img/rc-lesson</div></div>
+        <figcaption>Opening a region from the trail.</figcaption>
+      </figure>
+    </div>
+
+    <div class="cards">
+      <div class="card"><b>Not only tracking</b>
+        <p>A practice room for daily drills, a critique flow for feedback on finished pieces, and a
+        field guide for reference.</p></div>
+      <div class="card"><b>The session follows the stylus</b>
+        <p>A QR handoff moves a session from desktop to tablet. Anyone actually doing this is
+        holding a stylus, so the session has to be able to follow them there.</p></div>
+    </div>
+
+    <figure data-media="rc-canvas">
+      <div class="shot"><video src="img/rc-canvas.mp4" autoplay muted loop playsinline></video><div class="ph">img/rc-canvas</div></div>
+      <figcaption>Where the time actually goes: a guided blind-contour session — timed, rules pinned to the canvas.</figcaption>
+    </figure>
+
+    <div class="callout">
+      <span class="label">The map is version two</span>
+      <p>The first map was a generated 3D terrain — a whole continent illustrated at build time and
+      rendered as an explorable surface. Technically the most impressive thing in the project, and
+      wrong for it: learners needed a path, not a sandbox. The Ascent replaced it — one hand-drawn
+      mountainside where scroll is travel, the trail behind you is warm ink, and the frontier ahead
+      sits in mist. Killing the fancier version was the right call, and it still stung.</p>
+    </div>
+
+    <div class="pair">
+      <figure data-media="rc-practice">
+        <div class="shot"><img src="img/rc-practice.webp" alt="rc practice" loading="lazy" onerror="this.remove()"><div class="ph">img/rc-practice</div></div>
+        <figcaption>The practice room.</figcaption>
+      </figure>
+      <figure data-media="rc-camp">
+        <div class="shot"><img src="img/rc-camp.webp" alt="rc camp" loading="lazy" onerror="this.remove()"><div class="ph">img/rc-camp</div></div>
+        <figcaption>Base camp.</figcaption>
+      </figure>
+    </div>
+
+  </div>
+</div></section>
+
+<footer><div class="inner">
+  <p>Portland, Oregon</p>
+  <p><a href="mailto:donavynhaley@gmail.com">donavynhaley@gmail.com</a> ·
+     <a href="https://github.com/donavynhaley">github.com/donavynhaley</a> ·
+     <a href="https://www.linkedin.com/in/donavynhaley/">linkedin.com/in/donavynhaley</a></p>
+</div></footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="close" type="button">close · esc</button>
+  <img alt="">
+  <video muted loop playsinline controls style="display:none;max-width:96vw;max-height:88vh;border-radius:7px;border:1px solid var(--border-bright)"></video>
+  <p class="cap"></p>
+</div>
+<script>
+(() => {
+  const box = document.getElementById("lightbox");
+  const big = box.querySelector("img");
+  const bigVid = box.querySelector("video");
+  const cap = box.querySelector(".cap");
+  const close = () => { box.classList.remove("open"); big.src = ""; bigVid.pause(); bigVid.src = ""; document.body.style.overflow = ""; };
+  const open = (el) => {
+    const isVid = el.tagName === "VIDEO";
+    big.style.display = isVid ? "none" : "";
+    bigVid.style.display = isVid ? "" : "none";
+    if (isVid) { bigVid.src = el.currentSrc || el.src; bigVid.play().catch(() => {}); }
+    else { big.src = el.currentSrc || el.src; big.alt = el.alt; }
+    cap.textContent = el.closest("figure")?.querySelector("figcaption")?.textContent ?? "";
+    box.classList.add("open");
+    document.body.style.overflow = "hidden";
+  };
+  document.addEventListener("click", (e) => {
+    const media = e.target.closest(".shot img, .shot video");
+    if (media) { open(media); return; }
+    if (box.classList.contains("open") && (e.target === box || e.target.closest(".close"))) close();
+  });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.querySelectorAll(".shot video").forEach((v) => { v.autoplay = false; v.pause(); v.controls = true; });
+  }
+})();
+</script>
+</body>
+</html>
