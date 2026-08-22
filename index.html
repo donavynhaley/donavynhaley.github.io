@@ -37,7 +37,11 @@ nav a{color:var(--muted);text-decoration:none;font-size:11.5px;display:inline-fl
   transition:color 120ms ease}
 nav a:hover{color:var(--text-c)}
 nav a i{width:6px;height:6px;border-radius:999px;background:var(--nd,var(--faint))}
-@media(max-width:760px){nav .hide-sm{display:none}}
+@media(max-width:760px){
+  .brand-word{display:none}
+  nav .inner{gap:14px}
+  nav a{font-size:11px}
+}
 
 /* ---- hero: who + the board ---- */
 .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
@@ -98,9 +102,14 @@ h2{font-size:clamp(22px,3vw,28px);margin:0;letter-spacing:-.01em;font-weight:800
 .meta{display:flex;flex-wrap:wrap;gap:6px}
 .chip{display:inline-flex;min-height:19px;padding:1px 8px;align-items:center;border-radius:999px;
   font-size:9.5px;font-weight:700;color:var(--faint);border:1px solid var(--border)}
-.chip.live{color:var(--cat);background:color-mix(in srgb,var(--cat) 11%,transparent);
+.chip.live{color:var(--faint);border-color:var(--border)}
+.chip.live.on{color:var(--cat);background:color-mix(in srgb,var(--cat) 11%,transparent);
   border-color:color-mix(in srgb,var(--cat) 28%,transparent)}
-.chip.live::before{content:"";width:5px;height:5px;margin-right:6px;border-radius:999px;background:var(--cat)}
+.chip.live.on::before{content:"";width:5px;height:5px;margin-right:6px;border-radius:999px;background:var(--cat)}
+.chip.live.offline{color:var(--faint)}
+.chip.live.offline::before{content:"";width:5px;height:5px;margin-right:6px;border-radius:999px;
+  background:transparent;border:1px solid var(--faint)}
+.stack{font-size:10.5px;color:var(--faint);margin:0;line-height:1.7}
 a.chip{text-decoration:none;transition:border-color 120ms ease,color 120ms ease}
 a.chip:hover{border-color:var(--cat);color:var(--cat)}
 
@@ -221,29 +230,27 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
       <a href="https://www.linkedin.com/in/donavynhaley/">LinkedIn</a>
       <a href="mailto:donavynhaley@gmail.com">Email</a>
     </div>
-    <p class="note">Most of this is closed source, so what follows is write-ups of the decisions
-      rather than links to repos, with the artifacts I can show.</p>
   </div>
   <div class="board">
     <a class="bcard" href="#fitreps" style="--cat:var(--accent)">
       <b>FITREPS</b>
       <p>Creator monetization for fitness on AWS serverless. Three years as co-founder and CTO.</p>
-      <span class="sig"><span class="chip live">live</span><span class="chip">34 services · 499 specs</span></span>
+      <span class="sig"><span class="chip live" data-live="https://fitreps.com" data-probe="https://fitreps.com/LT_Logo.svg" data-live-label="fitreps.com">checking</span><span class="chip">34 services · 499 specs</span></span>
     </a>
     <a class="bcard" href="#monkey-code" style="--cat:var(--blue)">
       <b>monkey code</b>
       <p>A multi-agent coding system: deterministic pipeline, desktop cockpit.</p>
-      <span class="sig"><span class="chip live">active</span><span class="chip">8 roles · 2 providers</span></span>
+      <span class="sig"><span class="chip">runs local</span><span class="chip">8 roles · 2 providers</span></span>
     </a>
     <a class="bcard" href="#grimoire" style="--cat:var(--purple)">
       <b>grimoire</b>
       <p>A work board that's really a visual layer over Markdown. Agent-safe by design.</p>
-      <span class="sig"><span class="chip live">live</span><span class="chip">v0.2.0 on npm</span></span>
+      <span class="sig"><span class="chip live" data-live="https://grimoire.dryft.gg" data-probe="https://grimoire.dryft.gg/favicon.svg" data-live-label="grimoire.dryft.gg">checking</span><span class="chip">v0.2.0 on npm</span></span>
     </a>
     <a class="bcard" href="#rune-camp" style="--cat:var(--terra)">
       <b>rune.camp</b>
       <p>A gamified drawing curriculum laid out on a procedurally illustrated 3D world map.</p>
-      <span class="sig"><span class="chip">offline for now</span><span class="chip">guided studio</span></span>
+      <span class="sig"><span class="chip live" data-live="https://rune.camp" data-probe="https://rune.camp/icons/icon-192.png" data-live-label="rune.camp">checking</span><span class="chip">guided studio</span></span>
     </a>
   </div>
 </div></header>
@@ -251,15 +258,13 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
 <!-- ═════════ 01 FITREPS ═════════ -->
 <section id="fitreps"><div class="inner">
   <aside class="rail">
-    <div class="chead"><span class="dot pulse"></span><h2>FITREPS</h2><span class="count">since 2023</span></div>
+    <div class="chead"><span class="dot"></span><h2>FITREPS</h2><span class="count">since 2023</span></div>
     <p class="tagline">A creator monetization platform for fitness, running on AWS serverless.
       Co-founder and CTO.</p>
     <div class="meta">
-      <a class="chip live" href="https://fitreps.com">live · fitreps.com</a>
-      <span class="chip">TypeScript</span><span class="chip">AWS Lambda</span><span class="chip">Aurora</span>
-      <span class="chip">Next.js</span><span class="chip">Stripe</span><span class="chip">CDK</span>
-      <span class="chip">Playwright</span>
+      <a class="chip live" data-live="https://fitreps.com" data-probe="https://fitreps.com/LT_Logo.svg" data-live-label="fitreps.com" href="https://fitreps.com">fitreps.com · checking</a>
     </div>
+    <p class="stack">TypeScript · AWS Lambda · Aurora · Next.js · Stripe · CDK · Playwright</p>
     <div class="stats">
       <div class="stat"><b>34</b><span>LAMBDA SERVICES</span></div>
       <div class="stat"><b>268</b><span>API ROUTES</span></div>
@@ -295,32 +300,34 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
         every in-progress training program.</p></div>
     </div>
 
-    <div class="callout">
-      <span class="label">Worth calling out</span>
-      <p>Our performance harness was reporting simulated Lighthouse numbers as if they were
-      measurements. We'd been making decisions on them for months. The trace data was sitting in every
-      report and getting overwritten on the next run, and once I pulled it back out, the change we had
-      written off as a regression was a <strong>27% improvement in Largest Contentful Paint</strong>.
-      The page had been faster the whole time. What doubled was the model's multiplier.</p>
-      <p>The same pass turned up two live security problems nobody was looking for: bearer tokens
-      getting written to logs on every request, and AWS credentials serialized into a header no service
-      ever read.</p>
+    <div>
+      <h3 style="margin-bottom:10px">The test platform</h3>
+      <p style="margin-bottom:14px">499 specs across 48 subjects, 1,700 individually tagged
+      assertions. A suite that size stays useful only if it's governed like a product:</p>
+      <div class="cards">
+        <div class="card"><b>A DSL that can't rot</b>
+          <p>Specs are written in a Given/When/Then wrapper over Playwright, and every scenario
+          declares the one suite it belongs to. "Which tests block a merge" is a property of the
+          code, not tribal knowledge.</p></div>
+        <div class="card"><b>A written rule for what gates a merge</b>
+          <p>Three tiers, one decision rule: does the rest of the suite depend on it — smoke. Would
+          breakage cost revenue, reputation, or regulation — acceptance. Everything else —
+          regression. Recategorizing all 499 files against that rule was its own PR.</p></div>
+        <div class="card"><b>Sharded CI on self-hosted runners</b>
+          <p>Per merge: a smoke pass, then regression sharded eight ways, each shard signing in with
+          its own Cognito users so concurrent shards never collide. The full matrix runs nightly.
+          Moving the gate to self-hosted runners cut spend without slowing the loop.</p></div>
+        <div class="card"><b>One suite, two backends</b>
+          <p>The same specs run against the deployed dev backend or the dockerised local stack. A
+          health-check project gates every run, and global setup provisions — and sweeps — its own
+          test users in Cognito and Aurora.</p></div>
+      </div>
     </div>
 
-    <div class="duo">
-      <div class="txt">
-        <h3>The test platform</h3>
-        <p>499 Playwright specs with 1,700 individually tagged assertions, and a documented rule for
-        which of three tiers each one belongs in. A suite that size stops being useful the moment
-        nobody can say which tests are supposed to block a merge.</p>
-        <p>I also moved the pull-request gate onto self-hosted runners to cut spend without slowing
-        the loop down.</p>
-      </div>
-      <figure data-media="fr-playwright">
-        <div class="shot"><img src="img/fr-playwright.webp" alt="fr playwright" loading="lazy" onerror="this.remove()"><div class="ph">img/fr-playwright</div></div>
-        <figcaption>A smoke pass of the suite, run locally against the dockerised stack.</figcaption>
-      </figure>
-    </div>
+    <figure data-media="fr-playwright">
+      <div class="shot"><img src="img/fr-playwright.webp" alt="fr playwright" loading="lazy" onerror="this.remove()"><div class="ph">img/fr-playwright</div></div>
+      <figcaption>A smoke pass of the suite, run locally against the dockerised stack.</figcaption>
+    </figure>
 
     <figure data-media="fr-training-builder">
       <div class="shot"><img src="img/fr-training-builder.webp" alt="fr training builder" loading="lazy" onerror="this.remove()"><div class="ph">img/fr-training-builder</div></div>
@@ -336,9 +343,9 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
     <div class="chead"><span class="dot"></span><h2>monkey code</h2><span class="count">active</span></div>
     <p class="tagline">A multi-agent coding system with a deterministic pipeline and a desktop cockpit.</p>
     <div class="meta">
-      <span class="chip">TypeScript</span><span class="chip">Node.js</span>
-      <span class="chip">Chrome DevTools Protocol</span><span class="chip">React</span>
+      <span class="chip">not hosted · runs on my machines</span>
     </div>
+    <p class="stack">TypeScript · Node.js · React · Chrome DevTools Protocol</p>
     <p class="railnote">Agents are fine at a bounded task. They're bad at deciding what to do next.
       So the plan / code / review / merge loop is a state machine that lives in harness code, and an
       agent only gets asked for judgment inside a stage. It never picks the next one.</p>
@@ -425,7 +432,7 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
       </div>
       <figure data-media="mc-vault-graph">
         <div class="shot"><video src="img/mc-vault-graph.mp4" autoplay muted loop playsinline></video><div class="ph">img/mc-vault-graph</div></div>
-        <figcaption>The vault as a 3D graph — 133 notes, 633 links, orbitable.</figcaption>
+        <figcaption>The vault as a 3D graph — orbit it, click a node, and the note opens.</figcaption>
       </figure>
     </div>
 
@@ -444,16 +451,14 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
 <!-- ═════════ 03 GRIMOIRE ═════════ -->
 <section id="grimoire"><div class="inner">
   <aside class="rail">
-    <div class="chead"><span class="dot pulse"></span><h2>grimoire</h2><span class="count">v0.2.0 on npm</span></div>
+    <div class="chead"><span class="dot"></span><h2>grimoire</h2><span class="count">v0.2.0 on npm</span></div>
     <p class="tagline">A collaborative work board that is really a visual editing layer over
       Markdown files.</p>
     <div class="meta">
-      <a class="chip live" href="https://grimoire.dryft.gg">live · grimoire.dryft.gg</a>
-      <a class="chip live" href="https://www.npmjs.com/package/grimoire-mcp">grimoire-mcp on npm</a>
-      <span class="chip">React</span><span class="chip">SQLite</span><span class="chip">Docker</span>
+      <a class="chip live" data-live="https://grimoire.dryft.gg" data-probe="https://grimoire.dryft.gg/favicon.svg" data-live-label="grimoire.dryft.gg" href="https://grimoire.dryft.gg">grimoire.dryft.gg · checking</a>
+      <a class="chip" href="https://www.npmjs.com/package/grimoire-mcp">grimoire-mcp on npm</a>
     </div>
-    <p class="railnote">The design system on this page is Grimoire's — same palette, same pills,
-      same cards. You're already looking at it.</p>
+    <p class="stack">React · TypeScript · SQLite · Docker · Cloudflare Tunnel</p>
   </aside>
   <div class="content">
 
@@ -531,14 +536,12 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
 <!-- ═════════ 04 RUNE CAMP ═════════ -->
 <section id="rune-camp"><div class="inner">
   <aside class="rail">
-    <div class="chead"><span class="dot off"></span><h2>rune.camp</h2><span class="count">offline for now</span></div>
+    <div class="chead"><span class="dot"></span><h2>rune.camp</h2><span class="count">on pause</span></div>
     <p class="tagline">A gamified drawing curriculum. Boot.dev, but for learning to draw.</p>
     <div class="meta">
-      <span class="chip">Next.js</span><span class="chip">Prisma</span><span class="chip">Auth.js</span>
-      <span class="chip">WebGL brushes</span><span class="chip">S3</span>
+      <a class="chip live" data-live="https://rune.camp" data-probe="https://rune.camp/icons/icon-192.png" data-live-label="rune.camp" href="https://rune.camp">rune.camp · checking</a>
     </div>
-    <p class="railnote">Taken offline while its Proxmox host got repurposed for CI runners. The code
-      is intact.</p>
+    <p class="stack">Next.js · Prisma · Auth.js · WebGL brushes · S3</p>
   </aside>
   <div class="content">
 
@@ -579,15 +582,6 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
       <figcaption>Where the time actually goes: a guided blind-contour session — timed, rules pinned to the canvas.</figcaption>
     </figure>
 
-    <div class="callout">
-      <span class="label">The map is version two</span>
-      <p>The first map was a generated 3D terrain — a whole continent illustrated at build time and
-      rendered as an explorable surface. Technically the most impressive thing in the project, and
-      wrong for it: learners needed a path, not a sandbox. The Ascent replaced it — one hand-drawn
-      mountainside where scroll is travel, the trail behind you is warm ink, and the frontier ahead
-      sits in mist. Killing the fancier version was the right call, and it still stung.</p>
-    </div>
-
     <div class="pair">
       <figure data-media="rc-practice">
         <div class="shot"><img src="img/rc-practice.webp" alt="rc practice" loading="lazy" onerror="this.remove()"><div class="ph">img/rc-practice</div></div>
@@ -603,7 +597,9 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
 </div></section>
 
 <footer><div class="inner">
-  <p>Portland, Oregon</p>
+  <p>The work above is closed source. Everything on this page — the screenshots, the video, the
+     numbers — is captured from the real systems.</p>
+  <p style="margin-top:14px">Portland, Oregon</p>
   <p><a href="mailto:donavynhaley@gmail.com">donavynhaley@gmail.com</a> ·
      <a href="https://github.com/donavynhaley">github.com/donavynhaley</a> ·
      <a href="https://www.linkedin.com/in/donavynhaley/">linkedin.com/in/donavynhaley</a></p>
@@ -638,6 +634,22 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
     if (box.classList.contains("open") && (e.target === box || e.target.closest(".close"))) close();
   });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+  document.querySelectorAll("[data-live]").forEach((el) => {
+    const label = el.dataset.liveLabel;
+    const done = (up) => {
+      el.textContent = (up ? "online · " : "offline right now · ") + label;
+      el.classList.add(up ? "on" : "offline");
+      const dot = el.closest("section")?.querySelector(".dot");
+      if (dot) dot.classList.add(up ? "pulse" : "off");
+    };
+    const img = new Image();
+    let settled = false;
+    const settle = (up) => { if (!settled) { settled = true; done(up); } };
+    setTimeout(() => settle(false), 7000);
+    img.onload = () => settle(true);
+    img.onerror = () => settle(false);
+    img.src = el.dataset.probe + "?cb=" + Date.now();
+  });
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
     document.querySelectorAll(".shot video").forEach((v) => { v.autoplay = false; v.pause(); v.controls = true; });
   }
