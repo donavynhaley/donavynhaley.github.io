@@ -272,8 +272,8 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
     </a>
     <a class="bcard" href="#grimoire" style="--cat:var(--purple)">
       <b>grimoire</b>
-      <p>A work board that's really a visual layer over Markdown. Agent-safe by design.</p>
-      <span class="sig"><span class="chip live" data-live="https://grimoire.dryft.gg" data-probe="https://grimoire.dryft.gg/favicon.svg" data-live-label="grimoire.dryft.gg">checking</span><span class="chip">v0.2.0 on npm</span></span>
+      <p>A self-hosted work board for people and their agents, with Markdown you own.</p>
+      <span class="sig"><span class="chip live" data-live="https://grimoire.dryft.gg/demo" data-probe="https://grimoire.dryft.gg/favicon.svg" data-live-label="try the demo">checking</span><span class="chip">open source</span></span>
     </a>
     <a class="bcard" href="#rune-camp" style="--cat:var(--terra)">
       <b>rune.camp</b>
@@ -479,27 +479,27 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
 <!-- ═════════ 03 GRIMOIRE ═════════ -->
 <section id="grimoire"><div class="inner">
   <aside class="rail">
-    <div class="chead"><span class="dot"></span><h2>grimoire</h2><span class="count">v0.2.0 on npm</span></div>
-    <p class="tagline">A collaborative work board that is really a visual editing layer over
-      Markdown files.</p>
+    <div class="chead"><span class="dot"></span><h2>grimoire</h2><span class="count">open source</span></div>
+    <p class="tagline">A self-hosted work board for people and their agents, with Markdown you own.</p>
     <div class="meta">
-      <a class="chip live" data-live="https://grimoire.dryft.gg" data-probe="https://grimoire.dryft.gg/favicon.svg" data-live-label="grimoire.dryft.gg" href="https://grimoire.dryft.gg">grimoire.dryft.gg · checking</a>
-      <a class="chip" href="https://www.npmjs.com/package/grimoire-mcp">grimoire-mcp on npm</a>
+      <a class="chip live" data-live="https://grimoire.dryft.gg/demo" data-probe="https://grimoire.dryft.gg/favicon.svg" data-live-label="try the demo" href="https://grimoire.dryft.gg/demo">try the demo · checking</a>
+      <a class="chip" href="https://github.com/donavynhaley/grimoire">source on GitHub</a>
     </div>
-    <p class="stack">React · TypeScript · SQLite · Docker · Cloudflare Tunnel</p>
+    <p>No account needed for the demo. Edit freely; changes stay in your browser tab.</p>
+    <p class="stack">React · TypeScript · Markdown · SQLite · Docker</p>
   </aside>
   <div class="content">
 
     <div class="duo flip">
       <figure data-media="gr-board">
         <div class="shot"><video src="img/gr-board.mp4" autoplay muted loop playsinline></video><div class="ph">img/gr-board</div></div>
-        <figcaption>The board — dragging work into in progress.</figcaption>
+        <figcaption>The board - dragging work into in progress.</figcaption>
       </figure>
       <div class="txt">
         <h3>Markdown first</h3>
-        <p>Work is a page, pages group into chapters, and all of it is portable Markdown on disk.
-        The project stays readable, greppable and version-controlled with the app switched off,
-        which is most of why I built it this way.</p>
+        <p>Pages and ideas are ordinary Markdown files on disk.
+        Read them outside the app, keep them in an Obsidian vault, or track them in Git.
+        Accounts, discussions and project settings live in SQLite; backing up the data directory preserves both.</p>
         <p>Ideas sit in a separate garden until someone commits to one, so a maybe doesn't quietly
         turn into committed work.</p>
       </div>
@@ -507,13 +507,18 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
 
     <div class="cards">
       <div class="card"><b>Chapters end honestly</b>
-        <p>Closing one asks what should happen to whatever it didn't finish: roll it into the next
-        chapter, send it somewhere named, set it loose, or leave it where it is.</p></div>
-      <div class="card"><b>Estimates are history, not forecast</b>
-        <p>They get added up from what happened — never predicted.</p></div>
+        <p>Optional chapters group a stretch of work.
+        Closing one asks where unfinished pages should go: another chapter, back to ungrouped work, or stay here.</p></div>
+      <div class="card"><b>The board follows the pull request</b>
+        <p>Link a GitHub pull request and the page moves to Review when it opens and Done when it merges.</p></div>
       <div class="card"><b>The board earns attention</b>
         <p>Only what deserves focus now is visible. Everything accepted but not active lives in a
         searchable backlog instead of taking up a permanent column.</p></div>
+      <div class="card"><b>Discussion stays with the work</b>
+        <p>Each page has threads for decisions, questions and agent reports, keeping the brief separate from the conversation.</p></div>
+      <div class="card"><b>Review delegated work</b>
+        <p>Agent changes are attributed to the person who delegated them.
+        A dedicated review shows what changed and which questions still need a person.</p></div>
       <div class="card"><b>Nothing vanishes quietly</b>
         <p>Archiving is undoable, and once the undo window closes, search is the only way back in.
         An away digest covers what moved while you were gone.</p></div>
@@ -525,35 +530,35 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
       the permissions are deliberately asymmetric. <strong>An agent adds and refines. Only a person
       destroys or restructures.</strong> Archiving, promoting an idea, and managing chapters, categories,
       fields or membership stay closed to an agent no matter what its token scope says, and every agent
-      write lands in an audit log. Working out what an agent should be able to write was easy. Working
-      out what it should never be able to undo took a lot longer.</p>
+      write lands in an audit log.
+      Credentials are scoped to one project, can be read-only, and can be revoked immediately.</p>
     </div>
 
     <div class="pair">
       <figure data-media="gr-agent-access">
-        <div class="shot"><img src="img/gr-agent-access.webp" alt="gr agent access" loading="lazy" onerror="this.remove()"><div class="ph">img/gr-agent-access</div></div>
+        <div class="shot"><img src="img/gr-agent-access.webp" alt="Project agent credentials and their permitted actions" loading="lazy" onerror="this.remove()"><div class="ph">img/gr-agent-access</div></div>
         <figcaption>Agent tokens, and what a token can never do.</figcaption>
       </figure>
       <figure data-media="gr-chapter-close">
-        <div class="shot"><img src="img/gr-chapter-close.webp" alt="gr chapter close" loading="lazy" onerror="this.remove()"><div class="ph">img/gr-chapter-close</div></div>
+        <div class="shot"><img src="img/gr-chapter-close.webp" alt="Chapter closing dialog with choices for unfinished work" loading="lazy" onerror="this.remove()"><div class="ph">img/gr-chapter-close</div></div>
         <figcaption>Closing a chapter.</figcaption>
       </figure>
     </div>
 
     <figure data-media="gr-digest">
-      <div class="shot"><img src="img/gr-digest.webp" alt="gr digest" loading="lazy" onerror="this.remove()"><div class="ph">img/gr-digest</div></div>
-      <figcaption>Back after a day away: the digest, every write attributed — including the agent's.</figcaption>
+      <div class="shot"><img src="img/gr-digest.webp" alt="Activity digest showing changes since the last visit" loading="lazy" onerror="this.remove()"><div class="ph">img/gr-digest</div></div>
+      <figcaption>Back after a day away: the digest, every write attributed - including the agent's.</figcaption>
     </figure>
 
     <div class="duo">
       <div class="txt">
         <h3>Shipping it</h3>
-        <p>It deploys to a Proxmox guest behind a Cloudflare Tunnel, with a self-hosted GitHub
-        Actions runner shipping verified pushes to <code>main</code>. The MCP package is public:
-        <a class="inline" href="https://www.npmjs.com/package/grimoire-mcp">grimoire-mcp</a>.</p>
+        <p>The app is <a class="inline" href="https://github.com/donavynhaley/grimoire">open source under AGPL-3.0</a> and runs on your own infrastructure with Docker Compose.
+        The <a class="inline" href="https://www.npmjs.com/package/grimoire-mcp">MCP client</a> is published separately under MIT.</p>
+        <p><a class="inline" href="https://grimoire.dryft.gg/demo">Try the editable demo</a> without an account, or follow the <a class="inline" href="https://github.com/donavynhaley/grimoire/blob/main/docs/self-hosting.md">self-hosting guide</a> to run your own board.</p>
       </div>
       <figure data-media="gr-markdown-proof">
-        <div class="shot"><img src="img/gr-markdown-proof.webp" alt="gr markdown proof" loading="lazy" onerror="this.remove()"><div class="ph">img/gr-markdown-proof</div></div>
+        <div class="shot"><img src="img/gr-markdown-proof.webp" alt="Grimoire project pages stored as Markdown files" loading="lazy" onerror="this.remove()"><div class="ph">img/gr-markdown-proof</div></div>
         <figcaption>The same project as the board draws it, and as it sits on disk.</figcaption>
       </figure>
     </div>
