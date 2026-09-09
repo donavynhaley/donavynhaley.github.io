@@ -109,12 +109,11 @@ section .inner{display:grid;grid-template-columns:296px minmax(0,1fr);gap:52px;
   .rail{position:static}
 }
 
-.chead{display:flex;align-items:center;gap:12px}
+.chead{display:grid;grid-template-columns:9px minmax(0,1fr);align-items:center;gap:7px 12px}
 .dot{width:9px;height:9px;flex:none;border-radius:999px;background:var(--cat)}
 .dot.off{background:transparent;border:1.5px solid var(--faint)}
 h2{font-size:clamp(22px,3vw,28px);margin:0;letter-spacing:-.01em;font-weight:800;line-height:1.15}
-.count{display:inline-flex;min-height:20px;padding:0 9px;align-items:center;color:var(--muted);
-  background:var(--surface-soft);border-radius:999px;font-size:9.5px;white-space:nowrap;margin-top:4px}
+.project-role{grid-column:2;color:var(--muted);font-size:11px;line-height:1.5}
 .tagline{font-size:13px;color:var(--muted);margin:0;line-height:1.65}
 .railnote{font-size:11px;color:var(--faint);margin:0;line-height:1.65}
 
@@ -129,7 +128,38 @@ h2{font-size:clamp(22px,3vw,28px);margin:0;letter-spacing:-.01em;font-weight:800
 .chip.live.unknown{color:var(--faint)}
 .chip.live.unknown::before{content:"";width:5px;height:5px;margin-right:6px;border-radius:999px;
   background:transparent;border:1px solid var(--faint)}
-.stack{font-size:10.5px;color:var(--faint);margin:0;line-height:1.7}
+/* ---- expandable technology stacks ---- */
+.tech-stack{min-width:0;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
+.tech-stack summary{display:flex;align-items:center;justify-content:space-between;gap:18px;
+  min-height:76px;padding:17px 20px;cursor:pointer;list-style:none}
+.tech-stack summary::-webkit-details-marker{display:none}
+.tech-stack summary:hover{background:var(--surface-raised);border-radius:8px}
+.tech-stack summary:focus-visible{outline:2px solid var(--cat);outline-offset:4px;border-radius:8px}
+.stack-heading{display:grid;gap:5px;min-width:0}
+.stack-heading strong{font-size:12px;color:var(--text-c);font-weight:700}
+.stack-preview{font-size:11px;color:var(--muted);line-height:1.6}
+.stack-action{display:flex;align-items:center;gap:10px;flex:none;font-size:10px;color:var(--cat)}
+.stack-action::after{content:"+";font-size:18px;line-height:1}
+.tech-stack[open] .stack-action::after{content:"−"}
+.stack-close{display:none}
+.tech-stack[open] .stack-open{display:none}
+.tech-stack[open] .stack-close{display:inline}
+.stack-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 28px;
+  margin:0;padding:22px 20px 26px;border-top:1px solid var(--border)}
+.stack-groups > div{min-width:0}
+.stack-groups dt{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--cat)}
+.stack-groups dd{margin:7px 0 0}
+.stack-tools{font-size:12px;color:var(--text-c);line-height:1.85;overflow-wrap:anywhere}
+.stack-tools span{display:inline-block}
+.stack-tools span:not(:last-child)::after{content:"·";margin:0 7px;color:var(--faint)}
+.stack-purpose{font-size:11px;color:var(--muted);line-height:1.65}
+.stack-groups .stack-purpose{margin-top:7px}
+@media(max-width:600px){
+  .tech-stack summary{padding:16px;gap:12px;align-items:flex-start}
+  .stack-action{padding-top:2px}
+  .stack-groups{grid-template-columns:1fr;padding:20px 16px;gap:22px}
+}
+@media print{.tech-stack::details-content{display:block}.stack-action{display:none}}
 a.chip{text-decoration:none;transition:border-color 120ms ease,color 120ms ease}
 a.chip:hover{border-color:var(--cat);color:var(--cat)}
 
@@ -280,13 +310,11 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
 <!-- ═════════ 01 FITREPS ═════════ -->
 <section id="fitreps"><div class="inner">
   <aside class="rail">
-    <div class="chead"><span class="dot"></span><h2>FITREPS</h2><span class="count">since 2023</span></div>
-    <p class="tagline">A creator monetization platform for fitness, running on AWS serverless.
-      Co-founder and CTO.</p>
+    <div class="chead"><span class="dot"></span><h2>FITREPS</h2><span class="project-role">Co-founder &amp; CTO</span></div>
+    <p class="tagline">A creator monetization platform for fitness, running on AWS serverless.</p>
     <div class="meta">
       <a class="chip live" data-live="https://fitreps.com" data-probe="https://fitreps.com/static/App_Icon_512x512.png" data-live-label="fitreps.com" href="https://fitreps.com">fitreps.com · checking</a>
     </div>
-    <p class="stack">TypeScript · AWS Lambda · Aurora · Next.js · Stripe · CDK · Playwright</p>
     <div class="stats">
       <div class="stat"><b>34</b><span>LAMBDA SERVICES</span></div>
       <div class="stat"><b>268</b><span>API ROUTES</span></div>
@@ -298,6 +326,23 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
     <p class="railnote">I lead the backend, infrastructure, shared core package, and test platform.</p>
   </aside>
   <div class="content">
+
+    <details class="tech-stack" id="fitreps-stack">
+      <summary>
+        <span class="stack-heading"><strong>Technology stack</strong><span class="stack-preview">Next.js · AWS serverless · PostgreSQL</span></span>
+        <span class="stack-action"><span class="stack-open">Explore 8 areas</span><span class="stack-close">Collapse</span></span>
+      </summary>
+      <dl class="stack-groups">
+        <div><dt>Application</dt><dd><p class="stack-tools"><span>TypeScript</span><span>React</span><span>Next.js</span><span>Redux Toolkit</span><span>Material UI</span><span>PWA</span></p><p class="stack-purpose">The creator platform and installable athlete experience.</p></dd></div>
+        <div><dt>Services &amp; contracts</dt><dd><p class="stack-tools"><span>Node.js</span><span>AWS Lambda</span><span>API Gateway</span><span>REST</span><span>Zod</span></p><p class="stack-purpose">Independent services with shared, typed API contracts.</p></dd></div>
+        <div><dt>Data &amp; storage</dt><dd><p class="stack-tools"><span>Aurora PostgreSQL</span><span>Drizzle ORM</span><span>DynamoDB</span><span>S3</span></p><p class="stack-purpose">Relational product data, key-value storage, and uploaded media.</p></dd></div>
+        <div><dt>Identity &amp; payments</dt><dd><p class="stack-tools"><span>Cognito</span><span>IAM</span><span>Secrets Manager</span><span>Stripe Connect</span></p><p class="stack-purpose">Authentication, scoped access, creator onboarding, and payouts.</p></dd></div>
+        <div><dt>Events &amp; media</dt><dd><p class="stack-tools"><span>EventBridge</span><span>SQS</span><span>SNS</span><span>SES</span><span>Chime SDK</span><span>MediaConvert</span><span>CloudFront</span></p><p class="stack-purpose">Asynchronous work, notifications, chat, and video delivery.</p></dd></div>
+        <div><dt>Infrastructure &amp; delivery</dt><dd><p class="stack-tools"><span>AWS CDK</span><span>CloudFormation</span><span>Amplify</span><span>GitHub Actions</span><span>Docker</span><span>MinIO</span></p><p class="stack-purpose">Infrastructure as code, deployment automation, and local cloud substitutes.</p></dd></div>
+        <div><dt>Testing &amp; quality</dt><dd><p class="stack-tools"><span>Playwright</span><span>Vitest</span><span>Node.js test runner</span><span>ESLint</span></p><p class="stack-purpose">Browser acceptance coverage, unit checks, and code quality gates.</p></dd></div>
+        <div><dt>Observability</dt><dd><p class="stack-tools"><span>CloudWatch</span><span>AWS X-Ray</span><span>PostHog</span></p><p class="stack-purpose">Service logs and tracing alongside product analytics.</p></dd></div>
+      </dl>
+    </details>
 
     <figure data-media="fr-creator-dashboard">
       <div class="shot"><img src="img/fr-creator-dashboard.webp" alt="fr creator dashboard" loading="lazy" onerror="this.remove()"><div class="ph">img/fr-creator-dashboard</div></div>
@@ -362,17 +407,31 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
 <!-- ═════════ 02 MONKEY CODE ═════════ -->
 <section id="monkey-code"><div class="inner">
   <aside class="rail">
-    <div class="chead"><span class="dot"></span><h2>monkey code</h2><span class="count">active</span></div>
+    <div class="chead"><span class="dot"></span><h2>monkey code</h2><span class="project-role">Creator</span></div>
     <p class="tagline">A multi-agent coding system with a deterministic pipeline and a desktop cockpit.</p>
     <div class="meta">
       <span class="chip">not hosted · runs on my machines</span>
     </div>
-    <p class="stack">TypeScript · Node.js · React · Chrome DevTools Protocol</p>
     <p class="railnote">Agents are fine at a bounded task. They're bad at deciding what to do next.
       So the plan / code / review / merge loop is a state machine that lives in harness code, and an
       agent only gets asked for judgment inside a stage. It never picks the next one.</p>
   </aside>
   <div class="content">
+
+    <details class="tech-stack" id="monkey-code-stack">
+      <summary>
+        <span class="stack-heading"><strong>Technology stack</strong><span class="stack-preview">TypeScript · Node.js · Tauri</span></span>
+        <span class="stack-action"><span class="stack-open">Explore 6 areas</span><span class="stack-close">Collapse</span></span>
+      </summary>
+      <dl class="stack-groups">
+        <div><dt>Desktop application</dt><dd><p class="stack-tools"><span>React</span><span>TypeScript</span><span>Tauri</span><span>Rust</span><span>Vite</span></p><p class="stack-purpose">A desktop cockpit around the same engine used by the terminal.</p></dd></div>
+        <div><dt>Engine &amp; coordination</dt><dd><p class="stack-tools"><span>Node.js</span><span>HTTP</span><span>Server-Sent Events</span><span>Git worktrees</span></p><p class="stack-purpose">Live run streams and isolated checkouts for parallel coding.</p></dd></div>
+        <div><dt>Agent integrations</dt><dd><p class="stack-tools"><span>Codex CLI</span><span>Claude Code</span></p><p class="stack-purpose">Provider adapters connect local agent sessions to the harness.</p></dd></div>
+        <div><dt>Knowledge &amp; run data</dt><dd><p class="stack-tools"><span>Markdown</span><span>JSON</span><span>JSONL</span><span>Three.js</span><span>3d-force-graph</span></p><p class="stack-purpose">Durable specs and event logs, with a navigable knowledge graph.</p></dd></div>
+        <div><dt>Browser automation</dt><dd><p class="stack-tools"><span>Chromium</span><span>Chrome DevTools Protocol</span><span>WebSocket</span></p><p class="stack-purpose">Direct browser control for repeatable visual review across screen sizes.</p></dd></div>
+        <div><dt>Testing &amp; builds</dt><dd><p class="stack-tools"><span>Node.js test runner</span><span>TypeScript</span><span>Vite</span><span>Cargo</span></p><p class="stack-purpose">Engine and transport tests, browser capture checks, and desktop builds.</p></dd></div>
+      </dl>
+    </details>
 
     <figure data-media="mc-runs">
       <div class="shot"><img src="img/mc-runs.webp" alt="mc runs" loading="lazy" onerror="this.remove()"><div class="ph">img/mc-runs</div></div>
@@ -473,16 +532,31 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
 <!-- ═════════ 03 GRIMOIRE ═════════ -->
 <section id="grimoire"><div class="inner">
   <aside class="rail">
-    <div class="chead"><span class="dot"></span><h2>grimoire</h2><span class="count">open source</span></div>
+    <div class="chead"><span class="dot"></span><h2>grimoire</h2><span class="project-role">Creator &amp; maintainer</span></div>
     <p class="tagline">A self-hosted work board for people and their agents, with Markdown you own.</p>
     <div class="meta">
       <a class="chip live" data-live="https://grimoire.dryft.gg/demo" data-probe="https://grimoire.dryft.gg/favicon.svg" data-live-label="try the demo" href="https://grimoire.dryft.gg/demo">try the demo · checking</a>
       <a class="chip" href="https://github.com/donavynhaley/grimoire">source on GitHub</a>
     </div>
     <p>No account needed for the demo. Edit freely; changes stay in your browser tab.</p>
-    <p class="stack">React · TypeScript · Markdown · SQLite · Docker</p>
   </aside>
   <div class="content">
+
+    <details class="tech-stack" id="grimoire-stack">
+      <summary>
+        <span class="stack-heading"><strong>Technology stack</strong><span class="stack-preview">React · Node.js · SQLite</span></span>
+        <span class="stack-action"><span class="stack-open">Explore 7 areas</span><span class="stack-close">Collapse</span></span>
+      </summary>
+      <dl class="stack-groups">
+        <div><dt>Application</dt><dd><p class="stack-tools"><span>React</span><span>TypeScript</span><span>Vite</span><span>React Markdown</span><span>remark-gfm</span></p><p class="stack-purpose">A responsive work board with rich Markdown rendering.</p></dd></div>
+        <div><dt>API &amp; live updates</dt><dd><p class="stack-tools"><span>Node.js</span><span>HTTP</span><span>REST</span><span>Server-Sent Events</span></p><p class="stack-purpose">A native HTTP server and streamed updates to connected clients.</p></dd></div>
+        <div><dt>Data &amp; documents</dt><dd><p class="stack-tools"><span>SQLite</span><span>Markdown</span><span>Filesystem storage</span></p><p class="stack-purpose">Accounts and discussions in SQLite; work pages and images in portable files.</p></dd></div>
+        <div><dt>Agent integration &amp; validation</dt><dd><p class="stack-tools"><span>Model Context Protocol</span><span>MCP SDK</span><span>Zod</span></p><p class="stack-purpose">Project-scoped agent tools with validated inputs.</p></dd></div>
+        <div><dt>Security</dt><dd><p class="stack-tools"><span>Node.js crypto</span><span>scrypt</span><span>Scoped bearer tokens</span></p><p class="stack-purpose">Password hashing, revocable agent credentials, and permission checks.</p></dd></div>
+        <div><dt>Hosting &amp; delivery</dt><dd><p class="stack-tools"><span>Docker</span><span>Docker Compose</span><span>GitHub Actions</span><span>Cloudflare Tunnel</span><span>esbuild</span></p><p class="stack-purpose">Container builds, automated deployment, and self-hosted ingress.</p></dd></div>
+        <div><dt>Testing &amp; quality</dt><dd><p class="stack-tools"><span>Vitest</span><span>React Testing Library</span><span>jsdom</span><span>TypeScript</span></p><p class="stack-purpose">UI and server coverage, type checking, and end-to-end MCP verification.</p></dd></div>
+      </dl>
+    </details>
 
     <div class="duo flip">
       <figure data-media="gr-board">
