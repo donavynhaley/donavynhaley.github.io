@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Donavyn Haley — Selected Work</title>
-<meta name="description" content="Software engineer in Portland. Selected work: FITREPS, Monkey Code, Grimoire, rune.camp.">
+<meta name="description" content="Software engineer in Portland. Selected work: FITREPS, Monkey Code, Grimoire.">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,7 @@
   --border:#2b3136; --border-bright:#3a4248;
   --text-c:#d8d9d1; --muted:#92999c; --faint:#7c8387;
   --accent:#b8d99b; --accent-soft:#233021;
-  --blue:#8bb9c9; --purple:#b49bd4; --terra:#d89b73; --amber:#d6bc78; --red:#d87578;
+  --blue:#8bb9c9; --purple:#b49bd4; --amber:#d6bc78; --red:#d87578;
   --mono:"JetBrains Mono","Roboto Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
 *{box-sizing:border-box}
@@ -79,7 +79,8 @@ nav a i{width:6px;height:6px;border-radius:999px;background:var(--nd,var(--faint
 .links a:hover{background:var(--surface-soft);border-color:var(--border-bright);transform:translateY(-1px)}
 .hero .note{color:var(--faint);font-size:11.5px;margin:22px 0 0;max-width:52ch}
 
-.board{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.board .bcard:first-child{grid-column:1 / -1}
 .bcard{position:relative;overflow:hidden;display:grid;align-content:start;gap:8px;
   padding:16px 18px 15px;background:var(--surface-raised);border:1px solid var(--border);border-radius:7px;
   color:var(--text-c);text-decoration:none;
@@ -97,7 +98,7 @@ section{border-top:1px solid var(--border);scroll-margin-top:62px;position:relat
 section::before{content:"";position:absolute;inset:0 0 auto 0;height:220px;pointer-events:none;
   background:linear-gradient(180deg,color-mix(in srgb,var(--cat) 4%,transparent),transparent)}
 #fitreps{--cat:var(--accent)} #monkey-code{--cat:var(--blue)}
-#grimoire{--cat:var(--purple)} #rune-camp{--cat:var(--terra)}
+#grimoire{--cat:var(--purple)}
 section .inner{display:grid;grid-template-columns:296px minmax(0,1fr);gap:52px;
   padding-top:56px;padding-bottom:64px}
 .rail{position:sticky;top:78px;align-self:start;display:grid;gap:14px;align-content:start}
@@ -234,14 +235,12 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
     <a href="#fitreps" style="--nd:var(--accent)"><i></i>fitreps</a>
     <a href="#monkey-code" style="--nd:var(--blue)"><i></i>monkey code</a>
     <a href="#grimoire" style="--nd:var(--purple)"><i></i>grimoire</a>
-    <a href="#rune-camp" style="--nd:var(--terra)"><i></i>rune.camp</a>
   </span>
   <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false">☰</button>
   <div class="menu-panel">
     <a href="#fitreps" style="--nd:var(--accent)"><i></i>fitreps</a>
     <a href="#monkey-code" style="--nd:var(--blue)"><i></i>monkey code</a>
     <a href="#grimoire" style="--nd:var(--purple)"><i></i>grimoire</a>
-    <a href="#rune-camp" style="--nd:var(--terra)"><i></i>rune.camp</a>
   </div>
 </div></nav>
 
@@ -274,11 +273,6 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
       <b>grimoire</b>
       <p>A self-hosted work board for people and their agents, with Markdown you own.</p>
       <span class="sig"><span class="chip live" data-live="https://grimoire.dryft.gg/demo" data-probe="https://grimoire.dryft.gg/favicon.svg" data-live-label="try the demo">checking</span><span class="chip">open source</span></span>
-    </a>
-    <a class="bcard" href="#rune-camp" style="--cat:var(--terra)">
-      <b>rune.camp</b>
-      <p>A gamified drawing curriculum laid out on a procedurally illustrated 3D world map.</p>
-      <span class="sig"><span class="chip live" data-live="https://rune.camp" data-probe="https://rune.camp/icons/icon-192.png" data-live-label="rune.camp">checking</span><span class="chip">guided studio</span></span>
     </a>
   </div>
 </div></header>
@@ -560,69 +554,6 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
       <figure data-media="gr-markdown-proof">
         <div class="shot"><img src="img/gr-markdown-proof.webp" alt="Grimoire project pages stored as Markdown files" loading="lazy" onerror="this.remove()"><div class="ph">img/gr-markdown-proof</div></div>
         <figcaption>The same project as the board draws it, and as it sits on disk.</figcaption>
-      </figure>
-    </div>
-
-  </div>
-</div></section>
-
-<!-- ═════════ 04 RUNE CAMP ═════════ -->
-<section id="rune-camp"><div class="inner">
-  <aside class="rail">
-    <div class="chead"><span class="dot"></span><h2>rune.camp</h2><span class="count">on pause</span></div>
-    <p class="tagline">A gamified drawing curriculum. Boot.dev, but for learning to draw.</p>
-    <div class="meta">
-      <a class="chip live" data-live="https://rune.camp" data-probe="https://rune.camp/icons/icon-192.png" data-live-label="rune.camp" href="https://rune.camp">rune.camp · checking</a>
-    </div>
-    <p class="stack">Next.js · Prisma · Auth.js · WebGL brushes · S3</p>
-  </aside>
-  <div class="content">
-
-    <figure data-media="rc-map">
-      <div class="shot"><video src="img/rc-map.mp4" autoplay muted loop playsinline></video><div class="ph">img/rc-map</div></div>
-      <figcaption>The Ascent, traveled: from today's ritual at the base, up past the conquered camps, into the mist.</figcaption>
-    </figure>
-
-    <div class="duo">
-      <div class="txt">
-        <h3>Clear it region by region</h3>
-        <p>The whole drawing journey laid out as a fantasy world map. Each region grants a power and
-        takes three tiers to finish: <em>Scout</em> to learn the concept, <em>Grind</em> to do the
-        reps, <em>Boss fight</em> for one finished piece that proves it.</p>
-        <p>Five class paths — from Draw Anything through Character Artist to Manga &amp; Anime — run
-        different routes up the same mountain, so you're not looking at twenty regions with no idea
-        where to start. Regions
-        gate on their prerequisites, and XP, levels and a daily warm-up streak carry the momentum
-        between them.</p>
-      </div>
-      <figure data-media="rc-lesson">
-        <div class="shot"><img src="img/rc-lesson.webp" alt="rc lesson" loading="lazy" onerror="this.remove()"><div class="ph">img/rc-lesson</div></div>
-        <figcaption>Opening a region from the trail.</figcaption>
-      </figure>
-    </div>
-
-    <div class="cards">
-      <div class="card"><b>Not only tracking</b>
-        <p>A practice room for daily drills, a critique flow for feedback on finished pieces, and a
-        field guide for reference.</p></div>
-      <div class="card"><b>The session follows the stylus</b>
-        <p>A QR handoff moves a session from desktop to tablet. Anyone actually doing this is
-        holding a stylus, so the session has to be able to follow them there.</p></div>
-    </div>
-
-    <figure data-media="rc-canvas">
-      <div class="shot"><video src="img/rc-canvas.mp4" autoplay muted loop playsinline></video><div class="ph">img/rc-canvas</div></div>
-      <figcaption>Where the time actually goes: a guided blind-contour session — timed, rules pinned to the canvas.</figcaption>
-    </figure>
-
-    <div class="pair">
-      <figure data-media="rc-practice">
-        <div class="shot"><img src="img/rc-practice.webp" alt="rc practice" loading="lazy" onerror="this.remove()"><div class="ph">img/rc-practice</div></div>
-        <figcaption>The practice room.</figcaption>
-      </figure>
-      <figure data-media="rc-camp">
-        <div class="shot"><img src="img/rc-camp.webp" alt="rc camp" loading="lazy" onerror="this.remove()"><div class="ph">img/rc-camp</div></div>
-        <figcaption>Base camp.</figcaption>
       </figure>
     </div>
 
