@@ -101,7 +101,8 @@ section::before{content:"";position:absolute;inset:0 0 auto 0;height:220px;point
 #grimoire{--cat:var(--purple)}
 section .inner{display:grid;grid-template-columns:296px minmax(0,1fr);gap:52px;
   padding-top:56px;padding-bottom:64px}
-.rail{position:sticky;top:78px;align-self:start;display:grid;gap:14px;align-content:start}
+.rail{min-width:0;position:sticky;top:78px;align-self:start;display:grid;gap:14px;align-content:start}
+.rail:has(.tech-stack[open]){position:static}
 .content{display:grid;gap:30px;align-content:start;min-width:0}
 .content > *{margin:0}
 @media(max-width:960px){
@@ -130,22 +131,22 @@ h2{font-size:clamp(22px,3vw,28px);margin:0;letter-spacing:-.01em;font-weight:800
   background:transparent;border:1px solid var(--faint)}
 /* ---- expandable technology stacks ---- */
 .tech-stack{min-width:0;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
-.tech-stack summary{display:flex;align-items:center;justify-content:space-between;gap:18px;
-  min-height:76px;padding:17px 20px;cursor:pointer;list-style:none}
+.tech-stack summary{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;
+  min-height:76px;padding:15px;cursor:pointer;list-style:none}
 .tech-stack summary::-webkit-details-marker{display:none}
 .tech-stack summary:hover{background:var(--surface-raised);border-radius:8px}
 .tech-stack summary:focus-visible{outline:2px solid var(--cat);outline-offset:4px;border-radius:8px}
-.stack-heading{display:grid;gap:5px;min-width:0}
+.stack-heading{display:contents}
 .stack-heading strong{font-size:12px;color:var(--text-c);font-weight:700}
-.stack-preview{font-size:11px;color:var(--muted);line-height:1.6}
-.stack-action{display:flex;align-items:center;gap:10px;flex:none;font-size:10px;color:var(--cat)}
+.stack-preview{grid-column:1 / -1;grid-row:2;font-size:11px;color:var(--muted);line-height:1.6}
+.stack-action{grid-column:2;grid-row:1;display:flex;align-items:center;gap:10px;flex:none;font-size:10px;color:var(--cat)}
 .stack-action::after{content:"+";font-size:18px;line-height:1}
 .tech-stack[open] .stack-action::after{content:"−"}
 .stack-close{display:none}
 .tech-stack[open] .stack-open{display:none}
 .tech-stack[open] .stack-close{display:inline}
-.stack-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 28px;
-  margin:0;padding:22px 20px 26px;border-top:1px solid var(--border)}
+.stack-groups{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;
+  margin:0;padding:20px 15px;border-top:1px solid var(--border)}
 .stack-groups > div{min-width:0}
 .stack-groups dt{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--cat)}
 .stack-groups dd{margin:7px 0 0}
@@ -154,6 +155,7 @@ h2{font-size:clamp(22px,3vw,28px);margin:0;letter-spacing:-.01em;font-weight:800
 .stack-tools span:not(:last-child)::after{content:"·";margin:0 7px;color:var(--faint)}
 .stack-purpose{font-size:11px;color:var(--muted);line-height:1.65}
 .stack-groups .stack-purpose{margin-top:7px}
+@media(min-width:601px) and (max-width:960px){.stack-groups{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){
   .tech-stack summary{padding:16px;gap:12px;align-items:flex-start}
   .stack-action{padding-top:2px}
@@ -227,13 +229,13 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
 /* ---- lightbox ---- */
 .shot:has(img),.shot:has(video){cursor:zoom-in}
 .lightbox{position:fixed;inset:0;z-index:100;display:none;flex-direction:column;align-items:center;
-  justify-content:center;gap:14px;padding:28px;background:rgb(6 7 8 / 94%);backdrop-filter:blur(6px)}
+  justify-content:center;gap:14px;padding:76px 20px 24px;background:rgb(6 7 8 / 94%);backdrop-filter:blur(6px)}
 .lightbox.open{display:flex}
-.lightbox img{max-width:96vw;max-height:88vh;width:auto;height:auto;border-radius:7px;
+.lightbox img,.lightbox video{max-width:100%;max-height:calc(100dvh - 170px);width:auto;height:auto;object-fit:contain;min-height:0;border-radius:7px;
   border:1px solid var(--border-bright);box-shadow:0 24px 70px rgb(0 0 0 / 60%)}
-.lightbox .cap{font-size:11.5px;color:var(--muted);max-width:80ch;text-align:center}
+.lightbox .cap{max-height:72px;overflow:auto;flex-shrink:0;font-size:11.5px;color:var(--muted);max-width:80ch;text-align:center}
 .lightbox .close{position:absolute;top:16px;right:20px;color:var(--faint);background:var(--surface-raised);
-  border:1px solid var(--border);border-radius:6px;padding:6px 12px;font:inherit;font-size:11px;cursor:pointer;
+  border:1px solid var(--border);border-radius:6px;min-width:64px;min-height:44px;padding:8px 12px;font:inherit;font-size:12px;cursor:pointer;
   transition:color 120ms ease,border-color 120ms ease}
 .lightbox .close:hover{color:var(--text-c);border-color:var(--border-bright)}
 @media (prefers-reduced-motion: no-preference){
@@ -255,6 +257,29 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
 }
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* ---- touch layouts ---- */
+nav .links-row a{min-height:44px}
+:where(a,button,[role="button"]):focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+@media(max-width:960px){
+  .menu-btn{width:44px;height:44px}
+  .links a{min-height:44px;display:inline-flex;align-items:center}
+  .meta a.chip{min-height:44px;padding:8px 12px;font-size:11px}
+  footer a{display:inline-flex;align-items:center;min-height:44px;overflow-wrap:anywhere}
+  .lightbox{padding:72px 12px 20px}
+}
+@media(max-width:600px){
+  .inner{padding-left:20px;padding-right:20px}
+  .hero .inner{padding-top:40px;padding-bottom:40px;gap:28px}
+  section .inner{padding-top:36px;padding-bottom:40px;gap:28px}
+  .content{gap:24px}
+  .bcard p,.card p{font-size:13px;line-height:1.7}
+  .railnote,.stack-purpose{font-size:12px}
+  .stack-tools{font-size:13px}
+  figcaption{font-size:11.5px;line-height:1.6}
+  .callout{padding:18px}
+  footer{padding:36px 0 48px}
+}
 </style>
 </head>
 <body>
@@ -315,22 +340,10 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
     <div class="meta">
       <a class="chip live" data-live="https://fitreps.com" data-probe="https://fitreps.com/static/App_Icon_512x512.png" data-live-label="fitreps.com" href="https://fitreps.com">fitreps.com · checking</a>
     </div>
-    <div class="stats">
-      <div class="stat"><b>34</b><span>LAMBDA SERVICES</span></div>
-      <div class="stat"><b>268</b><span>API ROUTES</span></div>
-      <div class="stat"><b>97</b><span>AURORA TABLES</span></div>
-      <div class="stat"><b>2,600+</b><span>COMMITS OF MINE</span></div>
-      <div class="stat"><b>499</b><span>E2E SPECS</span></div>
-      <div class="stat"><b>1,700</b><span>TAGGED ASSERTIONS</span></div>
-    </div>
-    <p class="railnote">I lead the backend, infrastructure, shared core package, and test platform.</p>
-  </aside>
-  <div class="content">
-
     <details class="tech-stack" id="fitreps-stack">
       <summary>
         <span class="stack-heading"><strong>Technology stack</strong><span class="stack-preview">Next.js · AWS serverless · PostgreSQL</span></span>
-        <span class="stack-action"><span class="stack-open">Explore 8 areas</span><span class="stack-close">Collapse</span></span>
+        <span class="stack-action"><span class="stack-open">8 areas</span><span class="stack-close">Collapse</span></span>
       </summary>
       <dl class="stack-groups">
         <div><dt>Application</dt><dd><p class="stack-tools"><span>TypeScript</span><span>React</span><span>Next.js</span><span>Redux Toolkit</span><span>Material UI</span><span>PWA</span></p><p class="stack-purpose">The creator platform and installable athlete experience.</p></dd></div>
@@ -343,6 +356,17 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
         <div><dt>Observability</dt><dd><p class="stack-tools"><span>CloudWatch</span><span>AWS X-Ray</span><span>PostHog</span></p><p class="stack-purpose">Service logs and tracing alongside product analytics.</p></dd></div>
       </dl>
     </details>
+    <div class="stats">
+      <div class="stat"><b>34</b><span>LAMBDA SERVICES</span></div>
+      <div class="stat"><b>268</b><span>API ROUTES</span></div>
+      <div class="stat"><b>97</b><span>AURORA TABLES</span></div>
+      <div class="stat"><b>2,600+</b><span>COMMITS OF MINE</span></div>
+      <div class="stat"><b>499</b><span>E2E SPECS</span></div>
+      <div class="stat"><b>1,700</b><span>TAGGED ASSERTIONS</span></div>
+    </div>
+    <p class="railnote">I lead the backend, infrastructure, shared core package, and test platform.</p>
+  </aside>
+  <div class="content">
 
     <figure data-media="fr-creator-dashboard">
       <div class="shot"><img src="img/fr-creator-dashboard.webp" alt="fr creator dashboard" loading="lazy" onerror="this.remove()"><div class="ph">img/fr-creator-dashboard</div></div>
@@ -412,16 +436,10 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
     <div class="meta">
       <span class="chip">not hosted · runs on my machines</span>
     </div>
-    <p class="railnote">Agents are fine at a bounded task. They're bad at deciding what to do next.
-      So the plan / code / review / merge loop is a state machine that lives in harness code, and an
-      agent only gets asked for judgment inside a stage. It never picks the next one.</p>
-  </aside>
-  <div class="content">
-
     <details class="tech-stack" id="monkey-code-stack">
       <summary>
         <span class="stack-heading"><strong>Technology stack</strong><span class="stack-preview">TypeScript · Node.js · Tauri</span></span>
-        <span class="stack-action"><span class="stack-open">Explore 6 areas</span><span class="stack-close">Collapse</span></span>
+        <span class="stack-action"><span class="stack-open">6 areas</span><span class="stack-close">Collapse</span></span>
       </summary>
       <dl class="stack-groups">
         <div><dt>Desktop application</dt><dd><p class="stack-tools"><span>React</span><span>TypeScript</span><span>Tauri</span><span>Rust</span><span>Vite</span></p><p class="stack-purpose">A desktop cockpit around the same engine used by the terminal.</p></dd></div>
@@ -432,6 +450,11 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
         <div><dt>Testing &amp; builds</dt><dd><p class="stack-tools"><span>Node.js test runner</span><span>TypeScript</span><span>Vite</span><span>Cargo</span></p><p class="stack-purpose">Engine and transport tests, browser capture checks, and desktop builds.</p></dd></div>
       </dl>
     </details>
+    <p class="railnote">Agents are fine at a bounded task. They're bad at deciding what to do next.
+      So the plan / code / review / merge loop is a state machine that lives in harness code, and an
+      agent only gets asked for judgment inside a stage. It never picks the next one.</p>
+  </aside>
+  <div class="content">
 
     <figure data-media="mc-runs">
       <div class="shot"><img src="img/mc-runs.webp" alt="mc runs" loading="lazy" onerror="this.remove()"><div class="ph">img/mc-runs</div></div>
@@ -538,14 +561,10 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
       <a class="chip live" data-live="https://grimoire.dryft.gg/demo" data-probe="https://grimoire.dryft.gg/favicon.svg" data-live-label="try the demo" href="https://grimoire.dryft.gg/demo">try the demo · checking</a>
       <a class="chip" href="https://github.com/donavynhaley/grimoire">source on GitHub</a>
     </div>
-    <p>No account needed for the demo. Edit freely; changes stay in your browser tab.</p>
-  </aside>
-  <div class="content">
-
     <details class="tech-stack" id="grimoire-stack">
       <summary>
         <span class="stack-heading"><strong>Technology stack</strong><span class="stack-preview">React · Node.js · SQLite</span></span>
-        <span class="stack-action"><span class="stack-open">Explore 7 areas</span><span class="stack-close">Collapse</span></span>
+        <span class="stack-action"><span class="stack-open">7 areas</span><span class="stack-close">Collapse</span></span>
       </summary>
       <dl class="stack-groups">
         <div><dt>Application</dt><dd><p class="stack-tools"><span>React</span><span>TypeScript</span><span>Vite</span><span>React Markdown</span><span>remark-gfm</span></p><p class="stack-purpose">A responsive work board with rich Markdown rendering.</p></dd></div>
@@ -557,6 +576,9 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
         <div><dt>Testing &amp; quality</dt><dd><p class="stack-tools"><span>Vitest</span><span>React Testing Library</span><span>jsdom</span><span>TypeScript</span></p><p class="stack-purpose">UI and server coverage, type checking, and end-to-end MCP verification.</p></dd></div>
       </dl>
     </details>
+    <p>No account needed for the demo. Edit freely; changes stay in your browser tab.</p>
+  </aside>
+  <div class="content">
 
     <div class="duo flip">
       <figure data-media="gr-board">
@@ -642,10 +664,10 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
      <a href="https://www.linkedin.com/in/donavynhaley/">linkedin.com/in/donavynhaley</a></p>
 </div></footer>
 
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Media viewer">
   <button class="close" type="button">close · esc</button>
   <img alt="">
-  <video muted loop playsinline controls style="display:none;max-width:96vw;max-height:88vh;border-radius:7px;border:1px solid var(--border-bright)"></video>
+  <video muted loop playsinline controls style="display:none"></video>
   <p class="cap"></p>
 </div>
 <script>
@@ -654,8 +676,10 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
   const big = box.querySelector("img");
   const bigVid = box.querySelector("video");
   const cap = box.querySelector(".cap");
-  const close = () => { box.classList.remove("open"); big.src = ""; bigVid.pause(); bigVid.src = ""; document.body.style.overflow = ""; };
+  let opener = null;
+  const close = () => { box.classList.remove("open"); big.src = ""; bigVid.pause(); bigVid.src = ""; document.body.style.overflow = ""; opener?.focus({preventScroll:true}); };
   const open = (el) => {
+    opener = el.closest(".shot");
     const isVid = el.tagName === "VIDEO";
     big.style.display = isVid ? "none" : "";
     bigVid.style.display = isVid ? "" : "none";
@@ -664,13 +688,25 @@ code{font-size:.92em;color:var(--muted);background:var(--surface-soft);padding:1
     cap.textContent = el.closest("figure")?.querySelector("figcaption")?.textContent ?? "";
     box.classList.add("open");
     document.body.style.overflow = "hidden";
+    box.querySelector(".close").focus();
   };
+  document.querySelectorAll(".shot").forEach((shot) => {
+    const media = shot.querySelector("img,video");
+    if (!media) return;
+    shot.tabIndex = 0;
+    shot.setAttribute("role", "button");
+    shot.setAttribute("aria-label", "Enlarge: " + (shot.closest("figure")?.querySelector("figcaption")?.textContent.trim() || "project media"));
+    shot.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") { event.preventDefault(); open(media); }
+    });
+  });
   document.addEventListener("click", (e) => {
-    const media = e.target.closest(".shot img, .shot video");
+    const media = e.target.closest(".shot")?.querySelector("img,video");
     if (media) { open(media); return; }
     if (box.classList.contains("open") && (e.target === box || e.target.closest(".close"))) close();
   });
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && box.classList.contains("open")) close();
+ });
   const nav = document.querySelector("nav");
   const menuBtn = nav.querySelector(".menu-btn");
   const closeMenu = () => { nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); };
