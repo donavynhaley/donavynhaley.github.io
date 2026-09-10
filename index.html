@@ -170,6 +170,7 @@ h3{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--fain
   margin:0;font-weight:800}
 p{margin:0}
 .content p + p{margin-top:12px}
+.case-study h3{margin-bottom:14px}
 
 /* ---- rail stats ---- */
 .stats{display:grid;grid-template-columns:1fr 1fr;background:var(--surface);
@@ -369,51 +370,31 @@ nav .links-row a{min-height:44px}
   </aside>
   <div class="content">
 
+    <p>I owned the architecture for FITREPS, a fitness creator platform, including infrastructure, CI, and the test platform. I built billing end to end while my co-founder Alan focused primarily on the frontend and content creation.</p>
+
     <figure data-media="fr-creator-dashboard">
       <div class="shot"><img src="img/fr-creator-dashboard.webp" alt="fr creator dashboard" loading="lazy" onerror="this.remove()"><div class="ph">img/fr-creator-dashboard</div></div>
       <figcaption>Creator dashboard.</figcaption>
     </figure>
 
-    <div class="cards">
-      <div class="card"><b>One package, no drift</b>
-        <p>Route definitions, Zod schemas, entities and repositories live in one package that the
-        backend, the web app and the CDK infrastructure all read from. An endpoint gets defined once
-        and the types follow it everywhere. That's what kept 34 services from drifting apart.</p></div>
-      <div class="card"><b>Local dev is the production shape</b>
-        <p>An Express shim wraps the exact Lambda handlers and route definitions that ship to AWS,
-        with Docker Postgres standing in for Aurora and MinIO for S3. There is no separate local
-        implementation to drift out of sync.</p></div>
-      <div class="card"><b>The revenue surface, end to end</b>
-        <p>Stripe subscriptions and creator payouts, the webhooks that reconcile them, and a
-        FitCredits ledger for everything a subscription doesn't cover.</p></div>
-      <div class="card"><b>Around the edges</b>
-        <p>The admin app behind the closed alpha, the subscription-funnel analytics, comment
-        moderation with ban write-enforcement, and a nightly sweep that marks missed days across
-        every in-progress training program.</p></div>
+    <div class="case-study">
+      <h3>Choosing a database that supported iteration</h3>
+      <p>FITREPS started on DynamoDB while we were still discovering how the application needed to query its data. Workout programs connected to workouts, exercises, and reusable exercise templates. Comments, likes, and bookmarks added relationships between users and content.</p>
+      <p>As those requirements evolved, the data layer became increasingly difficult to reason about. I moved the relational data to Aurora PostgreSQL so we could adapt queries more easily and iterate faster. I made the transition before launch, migrating the existing development users and their data.</p>
     </div>
 
-    <div>
-      <h3 style="margin-bottom:10px">The test platform</h3>
-      <p style="margin-bottom:14px">499 specs across 48 subjects, 1,700 individually tagged
-      assertions. A suite that size stays useful only if it's governed like a product:</p>
-      <div class="cards">
-        <div class="card"><b>A DSL that can't rot</b>
-          <p>Specs are written in a Given/When/Then wrapper over Playwright, and every scenario
-          declares the one suite it belongs to. "Which tests block a merge" is a property of the
-          code, not tribal knowledge.</p></div>
-        <div class="card"><b>A written rule for what gates a merge</b>
-          <p>Three tiers, one decision rule: does the rest of the suite depend on it — smoke. Would
-          breakage cost revenue, reputation, or regulation — acceptance. Everything else —
-          regression. Recategorizing all 499 files against that rule was its own PR.</p></div>
-        <div class="card"><b>Sharded CI on self-hosted runners</b>
-          <p>Per merge: a smoke pass, then regression sharded eight ways, each shard signing in with
-          its own Cognito users so concurrent shards never collide. The full matrix runs nightly.
-          Moving the gate to self-hosted runners cut spend without slowing the loop.</p></div>
-        <div class="card"><b>One suite, two backends</b>
-          <p>The same specs run against the deployed dev backend or the dockerised local stack. A
-          health-check project gates every run, and global setup provisions — and sweeps — its own
-          test users in Cognito and Aurora.</p></div>
-      </div>
+    <div class="case-study">
+      <h3>Building billing around failure and recovery</h3>
+      <p>I built the Stripe integration, creator onboarding through Stripe Connect, subscriptions, and the surrounding refund and payout flows. The hardest part was handling failed payments, delayed events, and repeated webhook deliveries correctly.</p>
+      <p>Subscription processing protects against duplicate events and supports retries. Successful checkout also updates subscription state directly, so access does not depend solely on a webhook arriving. Refund and payout handling includes explicit ledger adjustments and state transitions.</p>
+      <p>I tested billing end to end using Stripe test mode, with additional webhook and data-layer tests covering repeated events, refunds, and payout failures.</p>
+    </div>
+
+    <div class="case-study">
+      <h3>Making releases repeatable and recoverable</h3>
+      <p>I built delivery checks alongside the application. Pull requests run lint, type checks, unit tests, application builds, infrastructure synthesis, and local platform integration tests. The local API runs the same Lambda handlers as AWS.</p>
+      <p>Development deployments update the backend before building the frontends, then run smoke tests followed by regression tests. Parallel test runs use separate users and server ports to avoid interfering with one another.</p>
+      <p>Production releases require a deliberate trigger and take a database snapshot before migrations. After deployment, read-only smoke checks verify the live system without creating test users or payment activity.</p>
     </div>
 
     <figure data-media="fr-playwright">
