@@ -672,6 +672,45 @@ nav .links-row a{min-height:44px}
 </div>
 <script>
 (() => {
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  document.querySelectorAll(".tech-stack").forEach((details) => {
+    const summary = details.querySelector("summary");
+    let animation = null;
+    let expanded = details.open;
+    const finish = () => {
+      animation?.cancel();
+      animation = null;
+      details.open = expanded;
+      details.style.overflow = "";
+    };
+    summary.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (!animation) expanded = details.open;
+      expanded = !expanded;
+      const start = details.getBoundingClientRect().height;
+      animation?.cancel();
+      if (reducedMotion.matches || !details.animate) { finish(); return; }
+      details.open = true;
+      const border = details.offsetHeight - details.clientHeight;
+      const end = expanded
+        ? details.getBoundingClientRect().height
+        : summary.getBoundingClientRect().height + border;
+      details.style.overflow = "hidden";
+      animation = details.animate(
+        { height: [`${start}px`, `${end}px`] },
+        { duration: 260, easing: "cubic-bezier(.2, .8, .2, 1)" },
+      );
+      animation.onfinish = finish;
+    });
+    // A breakpoint or preference change should leave a usable natural height.
+    let width = details.clientWidth;
+    new ResizeObserver(() => {
+      if (details.clientWidth === width) return;
+      width = details.clientWidth;
+      if (animation) finish();
+    }).observe(details);
+    reducedMotion.addEventListener("change", () => { if (animation) finish(); });
+  });
   const box = document.getElementById("lightbox");
   const big = box.querySelector("img");
   const bigVid = box.querySelector("video");
