@@ -170,7 +170,9 @@ h3{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--fain
   margin:0;font-weight:800}
 p{margin:0}
 .content p + p{margin-top:12px}
-.case-study h3{margin-bottom:14px}
+.case-study h3{font-size:13px;letter-spacing:0;text-transform:none;color:var(--text);margin-bottom:12px;line-height:1.5}
+.case-study.card{padding:20px 24px}
+.case-study.card p{font-size:13px;line-height:1.75}
 
 /* ---- rail stats ---- */
 .stats{display:grid;grid-template-columns:1fr 1fr;background:var(--surface);
@@ -370,27 +372,29 @@ nav .links-row a{min-height:44px}
   </aside>
   <div class="content">
 
-    <p>I owned the architecture for FITREPS, a fitness creator platform, including infrastructure, CI, and the test platform. I built billing end to end while my co-founder Alan focused primarily on the frontend and content creation.</p>
+    <div class="callout"><span class="label">Architecture through delivery</span>
+      <p>I owned the architecture for FITREPS, a fitness creator platform, including infrastructure, CI, and the test platform. I built billing end to end while my co-founder Alan focused primarily on the frontend and content creation.</p>
+    </div>
 
     <figure data-media="fr-creator-dashboard">
       <div class="shot"><img src="img/fr-creator-dashboard.webp" alt="fr creator dashboard" loading="lazy" onerror="this.remove()"><div class="ph">img/fr-creator-dashboard</div></div>
       <figcaption>Creator dashboard.</figcaption>
     </figure>
 
-    <div class="case-study">
+    <div class="card case-study">
       <h3>Choosing a database that supported iteration</h3>
       <p>FITREPS started on DynamoDB while we were still discovering how the application needed to query its data. Workout programs connected to workouts, exercises, and reusable exercise templates. Comments, likes, and bookmarks added relationships between users and content.</p>
       <p>As those requirements evolved, the data layer became increasingly difficult to reason about. I moved the relational data to Aurora PostgreSQL so we could adapt queries more easily and iterate faster. I made the transition before launch, migrating the existing development users and their data.</p>
     </div>
 
-    <div class="case-study">
+    <div class="card case-study">
       <h3>Building billing around failure and recovery</h3>
       <p>I built the Stripe integration, creator onboarding through Stripe Connect, subscriptions, and the surrounding refund and payout flows. The hardest part was handling failed payments, delayed events, and repeated webhook deliveries correctly.</p>
       <p>Subscription processing protects against duplicate events and supports retries. Successful checkout also updates subscription state directly, so access does not depend solely on a webhook arriving. Refund and payout handling includes explicit ledger adjustments and state transitions.</p>
       <p>I tested billing end to end using Stripe test mode, with additional webhook and data-layer tests covering repeated events, refunds, and payout failures.</p>
     </div>
 
-    <div class="case-study">
+    <div class="card case-study">
       <h3>Making releases repeatable and recoverable</h3>
       <p>I built delivery checks alongside the application. Pull requests run lint, type checks, unit tests, application builds, infrastructure synthesis, and local platform integration tests. The local API runs the same Lambda handlers as AWS.</p>
       <p>Development deployments update the backend before building the frontends, then run smoke tests followed by regression tests. Parallel test runs use separate users and server ports to avoid interfering with one another.</p>
