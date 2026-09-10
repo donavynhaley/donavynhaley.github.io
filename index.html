@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Donavyn Haley — Selected Work</title>
-<meta name="description" content="Software engineer in Portland. Selected work: FITREPS, Monkey Code, Grimoire.">
+<meta name="description" content="Software engineer in Portland. Selected work: FITREPS, Capuchin, Grimoire.">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -95,9 +95,10 @@ nav a i{width:6px;height:6px;border-radius:999px;background:var(--nd,var(--faint
 
 /* ---- sections: sticky rail + content ---- */
 section{border-top:1px solid var(--border);scroll-margin-top:62px;position:relative}
+.project-anchor{position:absolute;top:0;scroll-margin-top:62px}
 section::before{content:"";position:absolute;inset:0 0 auto 0;height:220px;pointer-events:none;
   background:linear-gradient(180deg,color-mix(in srgb,var(--cat) 4%,transparent),transparent)}
-#fitreps{--cat:var(--accent)} #monkey-code{--cat:var(--blue)}
+#fitreps{--cat:var(--accent)} #capuchin{--cat:var(--blue)}
 #grimoire{--cat:var(--purple)}
 section .inner{display:grid;grid-template-columns:296px minmax(0,1fr);gap:52px;
   padding-top:56px;padding-bottom:64px}
@@ -288,13 +289,13 @@ nav .links-row a{min-height:44px}
   <span class="brand"><span class="brand-mark">DH</span><span class="brand-word">Donavyn Haley</span></span>
   <span class="links-row">
     <a href="#fitreps" style="--nd:var(--accent)"><i></i>fitreps</a>
-    <a href="#monkey-code" style="--nd:var(--blue)"><i></i>monkey code</a>
+    <a href="#capuchin" style="--nd:var(--blue)"><i></i>capuchin</a>
     <a href="#grimoire" style="--nd:var(--purple)"><i></i>grimoire</a>
   </span>
   <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false">☰</button>
   <div class="menu-panel">
     <a href="#fitreps" style="--nd:var(--accent)"><i></i>fitreps</a>
-    <a href="#monkey-code" style="--nd:var(--blue)"><i></i>monkey code</a>
+    <a href="#capuchin" style="--nd:var(--blue)"><i></i>capuchin</a>
     <a href="#grimoire" style="--nd:var(--purple)"><i></i>grimoire</a>
   </div>
 </div></nav>
@@ -319,8 +320,8 @@ nav .links-row a{min-height:44px}
       <p>Creator monetization for fitness on AWS serverless. Three years as co-founder and CTO.</p>
       <span class="sig"><span class="chip live" data-live="https://fitreps.com" data-probe="https://fitreps.com/static/App_Icon_512x512.png" data-live-label="fitreps.com">checking</span><span class="chip">34 services · 499 specs</span></span>
     </a>
-    <a class="bcard" href="#monkey-code" style="--cat:var(--blue)">
-      <b>monkey code</b>
+    <a class="bcard" href="#capuchin" style="--cat:var(--blue)">
+      <b>Capuchin</b>
       <p>A multi-agent coding system: deterministic pipeline, desktop cockpit.</p>
       <span class="sig"><span class="chip">runs local</span><span class="chip">8 roles · 2 providers</span></span>
     </a>
@@ -428,15 +429,15 @@ nav .links-row a{min-height:44px}
   </div>
 </div></section>
 
-<!-- ═════════ 02 MONKEY CODE ═════════ -->
-<section id="monkey-code"><div class="inner">
+<!-- ═════════ 02 CAPUCHIN ═════════ -->
+<section id="capuchin"><span id="monkey-code" class="project-anchor" aria-hidden="true"></span><div class="inner">
   <aside class="rail">
-    <div class="chead"><span class="dot"></span><h2>monkey code</h2><span class="project-role">Creator</span></div>
+    <div class="chead"><span class="dot"></span><h2>Capuchin</h2><span class="project-role">Creator</span></div>
     <p class="tagline">A multi-agent coding system with a deterministic pipeline and a desktop cockpit.</p>
     <div class="meta">
       <span class="chip">not hosted · runs on my machines</span>
     </div>
-    <details class="tech-stack" id="monkey-code-stack">
+    <details class="tech-stack" id="capuchin-stack">
       <summary>
         <span class="stack-heading"><strong>Technology stack</strong><span class="stack-preview">TypeScript · Node.js · Tauri</span></span>
         <span class="stack-action"><span class="stack-open">6 areas</span><span class="stack-close">Collapse</span></span>
@@ -457,7 +458,7 @@ nav .links-row a{min-height:44px}
   <div class="content">
 
     <figure data-media="mc-runs">
-      <div class="shot"><img src="img/mc-runs.webp" alt="mc runs" loading="lazy" onerror="this.remove()"><div class="ph">img/mc-runs</div></div>
+      <div class="shot"><img src="img/mc-runs.webp" alt="Capuchin run dashboard" loading="lazy" onerror="this.remove()"><div class="ph">img/mc-runs</div></div>
       <figcaption>Starting a run: coding, PR review, or fix findings.</figcaption>
     </figure>
 
@@ -486,7 +487,7 @@ nav .links-row a{min-height:44px}
     </div>
 
     <figure data-media="mc-pipeline">
-      <div class="shot"><img src="img/mc-pipeline.webp" alt="mc pipeline" loading="lazy" onerror="this.remove()"><div class="ph">img/mc-pipeline</div></div>
+      <div class="shot"><img src="img/mc-pipeline.webp" alt="Capuchin agent pipeline" loading="lazy" onerror="this.remove()"><div class="ph">img/mc-pipeline</div></div>
       <figcaption>A cross-lab PR review: six gates, every reviewer timed and costed — $25.94 and 35.9M tokens, accounted for.</figcaption>
     </figure>
 
@@ -516,11 +517,11 @@ nav .links-row a{min-height:44px}
 
     <div class="pair">
       <figure data-media="mc-roles">
-        <div class="shot"><img src="img/mc-roles.webp" alt="mc roles" loading="lazy" onerror="this.remove()"><div class="ph">img/mc-roles</div></div>
+        <div class="shot"><img src="img/mc-roles.webp" alt="Capuchin agent roles" loading="lazy" onerror="this.remove()"><div class="ph">img/mc-roles</div></div>
         <figcaption>Role cards.</figcaption>
       </figure>
       <figure data-media="mc-usage">
-        <div class="shot"><img src="img/mc-usage.webp" alt="mc usage" loading="lazy" onerror="this.remove()"><div class="ph">img/mc-usage</div></div>
+        <div class="shot"><img src="img/mc-usage.webp" alt="Capuchin provider usage" loading="lazy" onerror="this.remove()"><div class="ph">img/mc-usage</div></div>
         <figcaption>Two providers, one meter.</figcaption>
       </figure>
     </div>
