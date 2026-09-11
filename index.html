@@ -566,6 +566,11 @@ nav .links-row a{min-height:44px}
   </aside>
   <div class="content">
 
+    <div class="callout">
+      <span class="label">Less bookkeeping, more building</span>
+      <p>I built Grimoire after using Notion to manage development through a sprint board. I wanted less effort spent organizing documents and maintaining the system around the work. The goal was a small, focused board that reflected where each project actually stood.</p>
+    </div>
+
     <div class="duo flip">
       <figure data-media="gr-board">
         <div class="shot"><video src="img/gr-board.mp4" autoplay muted loop playsinline></video><div class="ph">img/gr-board</div></div>
@@ -581,33 +586,23 @@ nav .links-row a{min-height:44px}
       </div>
     </div>
 
-    <div class="cards">
-      <div class="card"><b>Chapters end honestly</b>
-        <p>Optional chapters group a stretch of work.
-        Closing one asks where unfinished pages should go: another chapter, back to ungrouped work, or stay here.</p></div>
-      <div class="card"><b>The board follows the pull request</b>
-        <p>Link a GitHub pull request and the page moves to Review when it opens and Done when it merges.</p></div>
-      <div class="card"><b>The board earns attention</b>
-        <p>Only what deserves focus now is visible. Everything accepted but not active lives in a
-        searchable backlog instead of taking up a permanent column.</p></div>
-      <div class="card"><b>Discussion stays with the work</b>
-        <p>Each page has threads for decisions, questions and agent reports, keeping the brief separate from the conversation.</p></div>
-      <div class="card"><b>Review delegated work</b>
-        <p>Agent changes are attributed to the person who delegated them.
-        A dedicated review shows what changed and which questions still need a person.</p></div>
-      <div class="card"><b>Nothing vanishes quietly</b>
-        <p>Archiving is undoable, and once the undo window closes, search is the only way back in.
-        An away digest covers what moved while you were gone.</p></div>
+    <div class="card case-study">
+      <h3>Keeping current work visible and accurate</h3>
+      <p>I separated possible ideas, accepted backlog, and active work so they would not all compete for attention on the same board. Each project uses only the categories, fields, and optional chapters it needs.</p>
+      <p>Keeping that view accurate takes both a straightforward interface and integration with the work itself. People can update status directly, agents can report progress through project-scoped tools, and linked GitHub pull requests move pages into Review when opened and Done when merged.</p>
+      <p>Those paths reduce the separate bookkeeping needed to keep the board useful. Whether I move a page myself or an integration updates it, the goal is the same: return to a project and understand where it stands.</p>
     </div>
 
-    <div class="callout">
-      <span class="label">The permission model</span>
-      <p>Grimoire ships an MCP server so an agent can read and write a project over its HTTP API, and
-      the permissions are deliberately asymmetric. <strong>An agent adds and refines. Only a person
-      destroys or restructures.</strong> Archiving, promoting an idea, and managing chapters, categories,
-      fields or membership stay closed to an agent no matter what its token scope says, and every agent
-      write lands in an audit log.
-      Credentials are scoped to one project, can be read-only, and can be revoked immediately.</p>
+    <div class="card case-study">
+      <h3>Making it easier to return to a project</h3>
+      <p>I use Grimoire across four projects. Keeping each project's thoughts, work, and discussions together reduces the effort of switching between them.</p>
+      <p>The board gives me the current state, while individual pages hold the context behind the work. Discussions and activity history help preserve decisions across handoffs, and the away digest shows what changed while I was elsewhere.</p>
+    </div>
+
+    <div class="card case-study">
+      <h3>Letting agents contribute without taking over</h3>
+      <p>Agents can read and update work through project-scoped credentials. Their changes remain attributed to the person who delegated them, and their access can be revoked.</p>
+      <p>I kept destructive actions and project restructuring under human control. Agents can report progress and raise questions, but a person decides when a discussion is settled. That keeps the board useful as a shared record without giving an agent authority over how the project is organized.</p>
     </div>
 
     <div class="pair">
